@@ -196,8 +196,8 @@ function DetailPopup({
   return (
     <div
       className={`absolute left-0 top-full mt-3 z-50 w-72 sm:w-80
-                  bg-dark-2 border border-dark-4 rounded-2xl p-4
-                  shadow-2xl shadow-black/60
+                  bg-[#242424] border border-[#3a3a3a] rounded-2xl p-4
+                  shadow-2xl shadow-black/80 backdrop-blur-none
                   transition-all duration-200 ease-out origin-top-left
                   ${show
                     ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
@@ -241,7 +241,7 @@ function DetailPopup({
 
       {/* Stats */}
       {detail.stats && (
-        <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3 p-3 bg-dark-3 rounded-xl">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3 p-3 bg-[#2e2e2e] rounded-xl">
           {detail.stats.map((stat) => (
             <div key={stat.label}>
               <span className="text-[9px] text-muted/60 uppercase tracking-widest block leading-none mb-0.5">
@@ -258,7 +258,7 @@ function DetailPopup({
         {detail.tags.map((tag) => (
           <span
             key={tag}
-            className="px-2 py-0.5 bg-dark-4 rounded-md text-[10px] text-muted"
+            className="px-2 py-0.5 bg-[#333] rounded-md text-[10px] text-white/60"
           >
             {tag}
           </span>
