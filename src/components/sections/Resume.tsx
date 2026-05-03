@@ -281,17 +281,23 @@ function TimelineItem({
   const [showDetail, setShowDetail] = useState(false);
 
   return (
+    /*
+     * Le wrapper externe est SANS transform : il porte le z-index dynamique
+     * et sert d'ancre pour la popup absolute.
+     * La transform (translate-x) est sur le div interne uniquement, pour que
+     * son contexte d'empilement ne piège pas le z-50 de la popup.
+     */
     <div
-      className={`transition-all duration-700 ease-out ${
-        inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-16"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={`relative ${showDetail ? "z-50" : "z-10"}`}
+      onMouseEnter={() => setShowDetail(true)}
+      onMouseLeave={() => setShowDetail(false)}
     >
-      {/* Wrapper avec événements hover/click */}
+      {/* Partie animée : transform isolée ici */}
       <div
-        className="relative z-10"
-        onMouseEnter={() => setShowDetail(true)}
-        onMouseLeave={() => setShowDetail(false)}
+        className={`transition-all duration-700 ease-out ${
+          inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-16"
+        }`}
+        style={{ transitionDelay: `${delay}ms` }}
       >
         <div className="flex items-start gap-2 flex-wrap">
           <h3
@@ -309,13 +315,14 @@ function TimelineItem({
           )}
         </div>
         <p className="text-muted text-sm mt-0.5">{item.company}</p>
-
-        <DetailPopup
-          detail={item.detail}
-          show={showDetail}
-          onClose={() => setShowDetail(false)}
-        />
       </div>
+
+      {/* Popup hors du div transformé : son z-50 s'applique globalement */}
+      <DetailPopup
+        detail={item.detail}
+        show={showDetail}
+        onClose={() => setShowDetail(false)}
+      />
     </div>
   );
 }
