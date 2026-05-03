@@ -41,15 +41,7 @@ export default function Hero() {
             <div className="text-xs text-muted uppercase tracking-widest">Années d&apos;études</div>
           </div>
           <div>
-            <div className="text-5xl lg:text-6xl font-bold text-accent mb-2">3</div>
-            <div className="text-xs text-muted uppercase tracking-widest">Projets réalisés</div>
-          </div>
-          <div>
-            <div className="text-5xl lg:text-6xl font-bold text-accent mb-2">7</div>
-            <div className="text-xs text-muted uppercase tracking-widest">Mois de stage</div>
-          </div>
-
-          {/* Circular "MES PROJETS" badge */}
+            {/* Circular "MES PROJETS" badge */}
           <a
             href="#projects"
             className="ml-auto lg:ml-8 relative w-28 h-28 flex items-center justify-center group flex-shrink-0"
@@ -78,6 +70,12 @@ export default function Hero() {
               <ArrowDown size={20} className="text-muted group-hover:text-accent transition-colors" />
             </div>
           </a>
+          </div>
+          <div>
+            <div className="text-5xl lg:text-6xl font-bold text-accent mb-2">1+</div>
+            <div className="text-xs text-muted uppercase tracking-widest">Experience Pro</div>
+          </div>
+
         </div>
       </div>
     </section>

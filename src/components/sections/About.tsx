@@ -30,30 +30,6 @@ export default function About() {
           {personalInfo.bio}
         </p>
 
-        {/* Infos rapides */}
-        <div className="grid sm:grid-cols-2 gap-x-12 gap-y-4 mb-10 max-w-lg">
-          <div>
-            <span className="text-xs text-muted uppercase tracking-widest block mb-1">Email</span>
-            <a href={`mailto:${personalInfo.email}`} className="text-sm text-white hover:text-accent transition-colors">
-              {personalInfo.email}
-            </a>
-          </div>
-          <div>
-            <span className="text-xs text-muted uppercase tracking-widest block mb-1">Téléphone</span>
-            <a href={`tel:${personalInfo.phone}`} className="text-sm text-white hover:text-accent transition-colors">
-              {personalInfo.phone}
-            </a>
-          </div>
-          <div>
-            <span className="text-xs text-muted uppercase tracking-widest block mb-1">Localisation</span>
-            <span className="text-sm text-white">{personalInfo.location}</span>
-          </div>
-          <div>
-            <span className="text-xs text-muted uppercase tracking-widest block mb-1">Langues</span>
-            <span className="text-sm text-white">Français, Anglais</span>
-          </div>
-        </div>
-
         {/* Atouts */}
         <div className="flex flex-wrap gap-2">
           {personalInfo.strengths.map((s) => (

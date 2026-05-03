@@ -13,9 +13,9 @@ export const personalInfo = {
   portfolio: "https://zportfolio-main-ajkbik.laravel.cloud/",
   social: {
     github: "https://github.com/Zgit-hub237",
-    linkedin: "https://linkedin.com/in/loe-zegou",
-    instagram: "https://instagram.com/le_Z",
-    whatsapp: "https://wa.me/237693454977",
+    linkedin: "https://www.linkedin.com/in/loe-zegou-068066390/",
+    instagram: "https://www.instagram.com/z_loe237?igsh=NGgyNGY4dGU4c29q",
+    whatsapp: "https://wa.me/qr/6OJJBZF2OOCUJ1",
   },
   languages: [
     { name: "Français", level: "Natif", percent: 100 },
