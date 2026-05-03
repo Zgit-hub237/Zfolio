@@ -1,88 +1,120 @@
 "use client";
 
 import { useInView } from "react-intersection-observer";
-import { skills } from "@/data/portfolio";
+import { BarChart2 } from "lucide-react";
+import SectionBadge from "@/components/SectionBadge";
 
-function SkillBar({ name, percent, delay }: { name: string; percent: number; delay: number }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+const mainSkills = [
+  { name: "Flutter", abbr: "Fl", percent: 85 },
+  { name: "Firebase", abbr: "Fb", percent: 80 },
+  { name: "React", abbr: "Re", percent: 75 },
+  { name: "JavaScript", abbr: "JS", percent: 78 },
+  { name: "Kali Linux", abbr: "KL", percent: 75 },
+  { name: "MySQL", abbr: "DB", percent: 78 },
+  { name: "C / C++", abbr: "C+", percent: 72 },
+  { name: "Laravel", abbr: "Lv", percent: 68 },
+];
+
+function CircleSkill({
+  name,
+  abbr,
+  percent,
+  inView,
+  delay,
+}: {
+  name: string;
+  abbr: string;
+  percent: number;
+  inView: boolean;
+  delay: number;
+}) {
+  const radius = 44;
+  const circumference = 2 * Math.PI * radius;
+  const dashoffset = circumference - (percent / 100) * circumference;
 
   return (
-    <div ref={ref} className="group" style={{ transitionDelay: `${delay}ms` }}>
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-white group-hover:text-accent transition-colors">
-          {name}
-        </span>
-        <span className="text-xs font-bold text-accent">{percent}%</span>
+    <div
+      className="flex flex-col items-center gap-3"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="relative w-28 h-28">
+        {/* SVG circle progress */}
+        <svg className="w-28 h-28 -rotate-90" viewBox="0 0 100 100">
+          {/* Background track */}
+          <circle
+            cx="50"
+            cy="50"
+            r={radius}
+            fill="none"
+            stroke="#2a2a2a"
+            strokeWidth="2"
+          />
+          {/* Progress arc */}
+          <circle
+            cx="50"
+            cy="50"
+            r={radius}
+            fill="none"
+            stroke="#2ecc71"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            style={{
+              strokeDashoffset: inView ? dashoffset : circumference,
+              transition: `stroke-dashoffset 1.2s ease-out ${delay}ms`,
+            }}
+          />
+        </svg>
+
+        {/* Center content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-lg font-bold text-white leading-none">{abbr}</span>
+          <span className="text-accent font-bold text-sm leading-none mt-1">{percent}%</span>
+        </div>
       </div>
-      <div className="h-2 bg-dark-4 rounded-full overflow-hidden">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-accent to-accent-dark transition-all duration-1000 ease-out"
-          style={{ width: inView ? `${percent}%` : "0%" }}
-        />
-      </div>
+      <span className="text-sm text-muted text-center">{name}</span>
     </div>
   );
 }
 
-const categories = [
-  { key: "languages" as const, label: "Langages de programmation", icon: "</>" },
-  { key: "frameworks" as const, label: "Frameworks & Outils", icon: "{ }" },
-  { key: "security" as const, label: "Cybersécurité & Systèmes", icon: "🛡" },
-];
-
 export default function Skills() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="skills" className="py-24 bg-dark">
+    <section id="skills" className="min-h-screen flex flex-col justify-center px-10 lg:px-16 py-20 bg-dark">
       <div
         ref={ref}
-        className={`max-w-6xl mx-auto px-6 transition-all duration-700 ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        className={`max-w-4xl transition-all duration-700 ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        <div className="text-center mb-16">
-          <p className="section-subtitle">Ce que je maîtrise</p>
-          <h2 className="section-title">Compétences techniques</h2>
-          <div className="accent-line mx-auto" />
-        </div>
+        <SectionBadge icon={BarChart2} label="Mes Compétences" />
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {categories.map((cat) => (
-            <div key={cat.key} className="card hover:scale-[1.02] transition-transform duration-300">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent font-bold text-sm">
-                  {cat.icon}
-                </div>
-                <h3 className="text-white font-semibold">{cat.label}</h3>
-              </div>
-              <div className="space-y-5">
-                {skills[cat.key].map((skill, i) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    percent={skill.percent}
-                    delay={i * 100}
-                  />
-                ))}
-              </div>
-            </div>
+        <h2 className="section-heading mb-16">
+          Mes<br />
+          <span className="text-accent">avantages</span>
+        </h2>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 lg:gap-12">
+          {mainSkills.map((skill, i) => (
+            <CircleSkill key={skill.name} {...skill} inView={inView} delay={i * 80} />
           ))}
         </div>
 
-        {/* Tech badges */}
-        <div className="mt-16 text-center">
-          <p className="text-muted text-sm mb-6 uppercase tracking-widest">Outils & Technologies</p>
-          <div className="flex flex-wrap justify-center gap-3">
+        {/* Secondary skills text list */}
+        <div className="mt-16 pt-8 border-t border-dark-4">
+          <p className="text-xs text-muted uppercase tracking-widest mb-5">Également maîtrisé</p>
+          <div className="flex flex-wrap gap-2">
             {[
-              "VS Code", "IntelliJ IDEA", "Android Studio", "GitHub",
-              "Firebase", "MySQL", "SQLite", "VMware", "Kali Linux", "Windows Server",
-            ].map((tool) => (
+              "Dart", "Java", "C#", "HTML / CSS", "SQLite",
+              "Entity Framework", "MSFVenom", "VMware", "Windows Server",
+              "Android Studio", "IntelliJ IDEA",
+            ].map((t) => (
               <span
-                key={tool}
-                className="px-4 py-2 bg-dark-3 border border-dark-4 rounded-full text-sm text-muted hover:text-accent hover:border-accent/30 transition-all duration-200 cursor-default"
+                key={t}
+                className="px-3 py-1.5 border border-dark-4 rounded-full text-xs text-muted hover:border-accent/20 hover:text-accent/70 transition-all cursor-default"
               >
-                {tool}
+                {t}
               </span>
             ))}
           </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useInView } from "react-intersection-observer";
-import { Smartphone, Globe, Shield, CheckCircle2 } from "lucide-react";
+import { Layers, Smartphone, Globe, Shield } from "lucide-react";
+import SectionBadge from "@/components/SectionBadge";
 import { services } from "@/data/portfolio";
 
 const iconMap = {
@@ -10,78 +11,59 @@ const iconMap = {
   shield: Shield,
 };
 
+const projectCounts = {
+  smartphone: "2 PROJETS",
+  globe: "1 PROJET",
+  shield: "Études & Stage",
+};
+
 export default function Services() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="services" className="py-24 bg-dark">
+    <section id="services" className="min-h-screen flex flex-col justify-center px-10 lg:px-16 py-20 bg-dark-2">
       <div
         ref={ref}
-        className={`max-w-6xl mx-auto px-6 transition-all duration-700 ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        className={`max-w-3xl transition-all duration-700 ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        <div className="text-center mb-16">
-          <p className="section-subtitle">Ce que je propose</p>
-          <h2 className="section-title">Mes services</h2>
-          <div className="accent-line mx-auto" />
-          <p className="text-muted max-w-xl mx-auto mt-4">
-            Des solutions adaptées à vos besoins, alliant performance, sécurité et expérience utilisateur.
-          </p>
-        </div>
+        <SectionBadge icon={Layers} label="Services" />
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <h2 className="section-heading mb-12">
+          Mes<br />
+          <span className="text-accent">spécialisations</span>
+        </h2>
+
+        <div className="space-y-4">
           {services.map((service, i) => {
             const Icon = iconMap[service.icon as keyof typeof iconMap];
+            const count = projectCounts[service.icon as keyof typeof projectCounts];
             return (
               <div
                 key={service.id}
-                className={`card group hover:border-accent/30 hover:scale-[1.02] transition-all duration-500 relative overflow-hidden ${
-                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                className={`service-card transition-all duration-700 ${
+                  inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                 }`}
-                style={{ transitionDelay: `${i * 150}ms` }}
+                style={{ transitionDelay: `${i * 120}ms` }}
               >
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent/20 group-hover:border-accent/40 transition-all duration-300">
-                    <Icon size={24} className="text-accent" />
-                  </div>
-
-                  <h3 className="text-white font-bold text-xl mb-3 group-hover:text-accent transition-colors">
+                <div className="flex-1 mr-6">
+                  <h3 className="text-white text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
                     {service.title}
                   </h3>
-
-                  <p className="text-muted text-sm leading-relaxed mb-6">
+                  <p className="text-muted text-sm leading-relaxed mb-3">
                     {service.description}
                   </p>
-
-                  <ul className="space-y-2">
-                    {service.highlights.map((highlight) => (
-                      <li key={highlight} className="flex items-center gap-2 text-sm text-muted">
-                        <CheckCircle2 size={14} className="text-accent flex-shrink-0" />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-accent text-xs font-bold uppercase tracking-widest">
+                    {count}
+                  </p>
+                </div>
+                <div className="text-accent opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                  <Icon size={36} strokeWidth={1.5} />
                 </div>
               </div>
             );
           })}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <div className="inline-block card border-accent/20 bg-gradient-to-br from-accent/5 to-transparent">
-            <p className="text-white font-semibold mb-2">Vous avez un projet en tête ?</p>
-            <p className="text-muted text-sm mb-6">
-              Discutons de vos besoins et trouvons la meilleure solution ensemble.
-            </p>
-            <a href="#contact" className="btn-primary">
-              Démarrer un projet
-            </a>
-          </div>
         </div>
       </div>
     </section>
