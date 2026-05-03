@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { personalInfo } from "@/data/portfolio";
 
@@ -79,19 +79,21 @@ export default function Contact() {
               <p className="text-xs text-muted uppercase tracking-widest mb-4">Réseaux sociaux</p>
               <div className="flex gap-2">
                 {[
-                  { href: personalInfo.social.github, icon: Github, label: "GitHub" },
-                  { href: personalInfo.social.linkedin, icon: Linkedin, label: "LinkedIn" },
-                  { href: personalInfo.social.twitter, icon: Twitter, label: "Twitter" },
-                ].map(({ href, icon: Icon, label }) => (
+                  { href: personalInfo.social.github, label: "GitHub", color: "hover:text-red-500 hover:border-red-500/40" },
+                  { href: personalInfo.social.linkedin, label: "LinkedIn", color: "hover:text-blue-500 hover:border-blue-500/40" },
+                  { href: personalInfo.social.instagram, label: "Instagram", color: "hover:text-purple-500 hover:border-purple-500/40" },
+                  { href: personalInfo.social.whatsapp, label: "WhatsApp", color: "hover:text-green-500 hover:border-green-500/40" },
+                ].map(({ href, label, color }) => (
                   <a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 transition-all"
+                    title={label}
+                    className={`w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted transition-all ${color}`}
                   >
-                    <Icon size={15} />
+                    <span className="text-[10px] font-bold">{label.slice(0, 2)}</span>
                   </a>
                 ))}
               </div>

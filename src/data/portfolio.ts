@@ -14,7 +14,8 @@ export const personalInfo = {
   social: {
     github: "https://github.com/Zgit-hub237",
     linkedin: "https://linkedin.com/in/loe-zegou",
-    twitter: "https://twitter.com/le_Z",
+    instagram: "https://instagram.com/le_Z",
+    whatsapp: "https://wa.me/237693454977",
   },
   languages: [
     { name: "Français", level: "Natif", percent: 100 },
