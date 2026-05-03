@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Settings, Mail, Github, Linkedin, Twitter, X, Menu } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 
@@ -46,7 +47,7 @@ export default function Sidebar() {
           </div>
           <div className="text-right">
             <p className="text-[11px] text-muted leading-relaxed">
-              Étudiant en<br />Informatique,<br />Cybersécurité
+              Étudiant en<br />Informatique,<br />Genie Logiciel & Cybersécurité 
             </p>
           </div>
         </div>
@@ -54,8 +55,14 @@ export default function Sidebar() {
         {/* Profile content */}
         <div className="flex-1 flex flex-col items-center px-6 py-7 overflow-hidden">
           {/* Profile photo */}
-          <div className="w-44 h-44 rounded-2xl overflow-hidden bg-dark-4 border border-dark-4 mb-7 flex items-center justify-center flex-shrink-0">
-            <span className="text-6xl font-black text-white/10 select-none">LZ</span>
+          <div className="w-44 h-44 rounded-2xl overflow-hidden bg-dark-4 border border-dark-4 mb-7 flex-shrink-0 relative">
+            <Image
+              src="/images/profile.jpg"
+              alt="Loé Zegou Megnizon"
+              fill
+              className="object-cover object-top"
+              priority
+            />
           </div>
 
           {/* Contact */}
