@@ -16,8 +16,12 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { lang, setLang, t } = useT();
   const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => setMounted(true), []);
+
   const isDark = resolvedTheme === "dark";
 
   const menuLinks = [
@@ -195,7 +199,7 @@ export default function Hero() {
                 onClick={() => setTheme(isDark ? "light" : "dark")}
                 className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 transition-all"
               >
-                {isDark ? <Sun size={14} /> : <Moon size={14} />}
+                {mounted ? (isDark ? <Sun size={14} /> : <Moon size={14} />) : <span className="w-3.5 h-3.5" />}
               </button>
               {(["fr", "en"] as Lang[]).map((l) => (
                 <button key={l} onClick={() => setLang(l)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Settings, Mail, X, Menu, Download, Sun, Moon } from "lucide-react";
@@ -43,8 +43,11 @@ function GitHubIcon({ size = 14 }: { size?: number }) {
 
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const { lang, setLang, t } = useT();
+
+  useEffect(() => setMounted(true), []);
 
   const isDark = resolvedTheme === "dark";
 
@@ -132,7 +135,7 @@ export default function Sidebar() {
               title={isDark ? "Mode clair" : "Mode sombre"}
               className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 transition-all duration-200"
             >
-              {isDark ? <Sun size={14} /> : <Moon size={14} />}
+              {mounted ? (isDark ? <Sun size={14} /> : <Moon size={14} />) : <span className="w-3.5 h-3.5" />}
             </button>
 
             {/* Lang toggles */}
