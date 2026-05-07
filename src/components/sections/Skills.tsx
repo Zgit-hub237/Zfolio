@@ -25,6 +25,9 @@ const logoMap: Record<string, string> = {
   "Kali Linux": "/logos/kalilinux.jpg",
   "MySQL":    "/logos/mysql.jpg",
   "Laravel":  "/logos/laravel.jpg",
+  "C / C++":  "/logos/c.jpg",
+  "JavaScript": "/logos/javascript.jpg",
+  "React": "/logos/react.jpg",
 };
 
 const mainSkills = [
