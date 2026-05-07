@@ -1,3 +1,4 @@
+import { LangProvider } from "@/contexts/LangContext";
 import Sidebar from "@/components/Sidebar";
 import RightNav from "@/components/RightNav";
 import Hero from "@/components/sections/Hero";
@@ -10,23 +11,20 @@ import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <div className="bg-dark min-h-screen">
-      {/* Fixed left sidebar */}
-      <Sidebar />
-
-      {/* Main scrollable content — offset by sidebar width on desktop */}
-      <main className="lg:ml-[270px] lg:mr-10">
-        <Hero />
-        <About />
-        <Resume />
-        <Services />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-
-      {/* Fixed right icon navigation */}
-      <RightNav />
-    </div>
+    <LangProvider>
+      <div className="bg-dark min-h-screen">
+        <Sidebar />
+        <main className="lg:ml-[270px] lg:mr-10">
+          <Hero />
+          <About />
+          <Resume />
+          <Services />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+        <RightNav />
+      </div>
+    </LangProvider>
   );
 }

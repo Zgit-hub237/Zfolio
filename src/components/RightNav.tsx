@@ -2,23 +2,25 @@
 
 import { useState, useEffect } from "react";
 import { Home, User, FileText, Layers, BarChart2, Grid3X3, Mail } from "lucide-react";
-
-const navItems = [
-  { href: "#hero", icon: Home, label: "Accueil" },
-  { href: "#about", icon: User, label: "À propos" },
-  { href: "#resume", icon: FileText, label: "Parcours" },
-  { href: "#services", icon: Layers, label: "Services" },
-  { href: "#skills", icon: BarChart2, label: "Compétences" },
-  { href: "#projects", icon: Grid3X3, label: "Projets" },
-  { href: "#contact", icon: Mail, label: "Contact" },
-];
+import { useT } from "@/contexts/LangContext";
 
 export default function RightNav() {
   const [active, setActive] = useState("#hero");
+  const { t } = useT();
+
+  const navItems = [
+    { href: "#hero",     icon: Home,      label: t.nav.home },
+    { href: "#about",    icon: User,      label: t.nav.about },
+    { href: "#resume",   icon: FileText,  label: t.nav.resume },
+    { href: "#services", icon: Layers,    label: t.nav.services },
+    { href: "#skills",   icon: BarChart2, label: t.nav.skills },
+    { href: "#projects", icon: Grid3X3,   label: t.nav.projects },
+    { href: "#contact",  icon: Mail,      label: t.nav.contact },
+  ];
 
   useEffect(() => {
+    const ids = ["hero", "about", "resume", "services", "skills", "projects", "contact"];
     const handleScroll = () => {
-      const ids = navItems.map((n) => n.href.replace("#", ""));
       for (const id of [...ids].reverse()) {
         const el = document.getElementById(id);
         if (el && window.scrollY >= el.offsetTop - 200) {
@@ -42,7 +44,7 @@ export default function RightNav() {
           className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${
             active === href
               ? "text-accent bg-accent/10"
-              : "text-muted hover:text-white"
+              : "text-muted hover:text-foreground"
           }`}
         >
           <Icon size={15} />

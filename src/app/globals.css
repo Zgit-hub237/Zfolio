@@ -4,6 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme variables ── */
+:root {
+  --bg:             #f4f4f4;
+  --bg-2:           #ffffff;
+  --bg-3:           #ebebeb;
+  --bg-4:           #e0e0e0;
+  --foreground-rgb: 15 15 15;
+  --muted-rgb:      100 100 100;
+}
+
+.dark {
+  --bg:             #141414;
+  --bg-2:           #1c1c1c;
+  --bg-3:           #222222;
+  --bg-4:           #2a2a2a;
+  --foreground-rgb: 226 232 240;
+  --muted-rgb:      136 136 136;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -16,10 +35,11 @@
   }
 
   body {
-    background-color: #141414;
-    color: #e2e8f0;
+    background-color: var(--bg);
+    color: rgb(var(--foreground-rgb));
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
@@ -32,11 +52,11 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #141414;
+    background: var(--bg);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
+    background: var(--bg-4);
     border-radius: 10px;
   }
 
@@ -47,15 +67,15 @@
 
 @layer components {
   .btn-hire {
-    @apply inline-flex items-center justify-center gap-2 w-full py-3 bg-accent text-dark font-bold rounded-full hover:bg-accent-dark transition-all duration-200 text-sm tracking-wide;
+    @apply inline-flex items-center justify-center gap-2 w-full py-3 bg-accent text-[#0f0f0f] font-bold rounded-full hover:bg-accent-dark transition-all duration-200 text-sm tracking-wide;
   }
 
   .section-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 border border-dark-4 rounded-full text-xs font-medium text-muted mb-8 uppercase tracking-widest;
+    @apply inline-flex items-center gap-2 px-4 py-2 border border-dark-4 rounded-full text-xs font-medium text-muted mb-5 sm:mb-8 uppercase tracking-widest;
   }
 
   .section-heading {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6;
   }
 
   .timeline-dot {
@@ -63,6 +83,6 @@
   }
 
   .service-card {
-    @apply flex items-center justify-between p-6 border border-dark-4 rounded-2xl transition-all duration-300 cursor-default;
+    @apply flex items-center justify-between p-4 sm:p-6 border border-dark-4 bg-dark-2 rounded-2xl transition-all duration-300 cursor-default;
   }
 }

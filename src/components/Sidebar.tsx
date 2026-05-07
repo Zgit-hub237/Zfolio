@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Settings, Mail, X, Menu } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Settings, Mail, X, Menu, Download, Sun, Moon } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import { useT, type Lang } from "@/contexts/LangContext";
 
 function InstagramIcon({ size = 14 }: { size?: number }) {
   return (
@@ -41,13 +43,17 @@ function GitHubIcon({ size = 14 }: { size?: number }) {
 
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const { lang, setLang, t } = useT();
+
+  const isDark = resolvedTheme === "dark";
 
   return (
     <>
       {/* Mobile hamburger */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed top-5 left-5 z-50 lg:hidden w-10 h-10 bg-dark-2 border border-dark-4 rounded-xl flex items-center justify-center text-muted hover:text-white transition-colors"
+        className="fixed top-5 left-5 z-50 lg:hidden w-10 h-10 bg-dark-2 border border-dark-4 rounded-xl flex items-center justify-center text-muted hover:text-foreground transition-colors"
         aria-label="Menu"
       >
         {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -66,34 +72,33 @@ export default function Sidebar() {
         className={`fixed top-0 left-0 h-screen w-[270px] bg-dark-2 border-r border-dark-4 z-40 flex flex-col transition-transform duration-300
           ${mobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       >
-        {/* Top header — gear | logo | subtitle */}
+        {/* Top header */}
         <div className="flex items-center justify-between px-4 pt-5 pb-5 border-b border-dark-4">
-          {/* Left : gear (spinning) + logo */}
           <div className="flex items-center gap-2">
             <button
-              className="text-muted hover:text-white transition-colors animate-spin-slow flex-shrink-0"
+              className="text-muted hover:text-foreground transition-colors animate-spin-slow flex-shrink-0"
               aria-label="Paramètres"
             >
               <Settings size={16} />
             </button>
-            <span className="text-xl font-bold text-white tracking-tight">Loé</span>
+            <span className="text-xl font-bold text-foreground tracking-tight">Loé</span>
             <div className="w-5 h-5 rounded-full border border-accent flex items-center justify-center bg-accent/10 flex-shrink-0">
               <span className="text-accent text-[9px] font-bold">L</span>
             </div>
           </div>
 
-          {/* Right : subtitle */}
           <div className="text-right">
             <p className="text-[11px] text-muted leading-relaxed">
-              Étudiant en<br />Informatique,<br />Génie Logiciel &<br />Cybersécurité
+              {t.sidebar.subtitleLines.map((line, i) => (
+                <span key={i}>{line}{i < t.sidebar.subtitleLines.length - 1 && <br />}</span>
+              ))}
             </p>
           </div>
         </div>
 
         {/* Profile content */}
-        <div className="flex-1 flex flex-col items-center px-6 py-6 overflow-hidden">
-          {/* Profile photo */}
-          <div className="w-44 h-44 rounded-2xl overflow-hidden bg-dark-4 border border-dark-4 mb-3 flex-shrink-0 relative">
+        <div className="flex-1 flex flex-col items-center px-6 py-6 overflow-y-auto">
+          <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-dark-4 border border-dark-4 mb-3 flex-shrink-0 relative">
             <Image
               src="/images/profile.jpg"
               alt="Loé Zegou Megnizon"
@@ -103,81 +108,83 @@ export default function Sidebar() {
             />
           </div>
 
-          {/* Full name in bold below photo */}
-          <p className="text-white font-bold text-sm mb-5 text-center tracking-wide">
+          <p className="text-foreground font-bold text-sm mb-5 text-center tracking-wide">
             Loé Zegou Megnizon
           </p>
 
-          {/* Contact */}
           <a
             href={`mailto:${personalInfo.email}`}
             className="text-sm text-muted hover:text-accent transition-colors text-center mb-1"
           >
             {personalInfo.email}
           </a>
-          <p className="text-sm text-muted text-center mb-5">{personalInfo.address}</p>
+          <p className="text-sm text-muted text-center mb-4">{personalInfo.address}</p>
 
-          <p className="text-[11px] text-muted/50 mb-6 text-center">
-            © Loé Zegou 2025. Tous droits réservés
+          <p className="text-[11px] text-muted/50 mb-4 text-center">
+            {t.sidebar.copyright}
           </p>
 
-          {/* Social icons avec couleurs de survol spécifiques */}
-          <div className="flex gap-2">
-            {/* Instagram — violet */}
-            <a
-              href={personalInfo.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted
-                hover:text-purple-500 hover:border-purple-500/40 hover:bg-purple-500/5 transition-all duration-200"
+          {/* Theme + Lang toggles */}
+          <div className="flex items-center gap-2 mb-4">
+            {/* Theme toggle */}
+            <button
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              title={isDark ? "Mode clair" : "Mode sombre"}
+              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 transition-all duration-200"
             >
+              {isDark ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+
+            {/* Lang toggles */}
+            {(["fr", "en"] as Lang[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 ${
+                  lang === l
+                    ? "bg-accent text-[#0f0f0f] border-accent"
+                    : "border-dark-4 text-muted hover:text-accent hover:border-accent/30"
+                }`}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Social icons */}
+          <div className="flex gap-2">
+            <a href={personalInfo.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-purple-500 hover:border-purple-500/40 hover:bg-purple-500/5 transition-all duration-200">
               <InstagramIcon size={14} />
             </a>
-
-            {/* WhatsApp — vert */}
-            <a
-              href={personalInfo.social.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted
-                hover:text-green-500 hover:border-green-500/40 hover:bg-green-500/5 transition-all duration-200"
-            >
+            <a href={personalInfo.social.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-green-500 hover:border-green-500/40 hover:bg-green-500/5 transition-all duration-200">
               <WhatsAppIcon size={14} />
             </a>
-
-            {/* LinkedIn — bleu */}
-            <a
-              href={personalInfo.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted
-                hover:text-blue-500 hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-200"
-            >
+            <a href={personalInfo.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-blue-500 hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-200">
               <LinkedInIcon size={14} />
             </a>
-
-            {/* GitHub — rouge */}
-            <a
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted
-                hover:text-red-500 hover:border-red-500/40 hover:bg-red-500/5 transition-all duration-200"
-            >
+            <a href={personalInfo.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-red-500 hover:border-red-500/40 hover:bg-red-500/5 transition-all duration-200">
               <GitHubIcon size={14} />
             </a>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="px-6 pb-8 flex-shrink-0">
+        <div className="px-6 pb-8 flex-shrink-0 space-y-3" suppressHydrationWarning>
+          <a
+            href="/cv/CV_ZEGOU_MEGNIZON_LOE.pdf"
+            download
+            className="flex items-center justify-center gap-2 w-full py-2.5 border border-accent/30 rounded-2xl text-accent text-sm font-medium hover:bg-accent/10 transition-all duration-200"
+          >
+            <Download size={14} />
+            {t.sidebar.downloadCV}
+          </a>
           <a href="#contact" className="btn-hire" onClick={() => setMobileOpen(false)}>
             <Mail size={14} />
-            ME CONTACTER
+            {t.sidebar.contactMe}
           </a>
         </div>
       </aside>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,14 +15,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className="scroll-smooth">
-      <body className="antialiased">{children}</body>
+    <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
+      <body className="antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
