@@ -112,5 +112,6 @@ export interface Translations {
     sentTitle: string;
     sentMessage: string;
     newMessageButton: string;
+    errorMessage: string;
   };
 }

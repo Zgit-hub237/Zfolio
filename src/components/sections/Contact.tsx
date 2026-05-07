@@ -10,7 +10,7 @@ import { useT } from "@/contexts/LangContext";
 export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const { t } = useT();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -20,9 +20,18 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("sent");
-    setForm({ name: "", email: "", subject: "", message: "" });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("sent");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -150,6 +159,12 @@ export default function Contact() {
                     placeholder={t.contact.messagePlaceholder}
                     className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors resize-none placeholder:text-muted/30" />
                 </div>
+
+                {status === "error" && (
+                  <p className="text-red-400 text-xs text-center py-2">
+                    {t.contact.errorMessage}
+                  </p>
+                )}
 
                 <button type="submit" disabled={status === "sending"}
                   className="btn-hire disabled:opacity-50 disabled:cursor-not-allowed">

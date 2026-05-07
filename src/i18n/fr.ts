@@ -309,5 +309,6 @@ export const fr: Translations = {
     sentTitle: "Message envoyé !",
     sentMessage: "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
     newMessageButton: "Nouveau message",
+    errorMessage: "Une erreur s'est produite. Veuillez réessayer.",
   },
 };
