@@ -123,7 +123,7 @@ export const services = [
     title: "Développement Mobile",
     description:
       "Applications iOS et Android performantes avec Flutter. Authentification sécurisée, messagerie temps réel, expériences natives multiplateformes.",
-    highlights: ["Flutter & Dart", "Firebase", "UI/UX Mobile", "Authentification biométrique"],
+    highlights: ["Flutter & Dart", "Firebase", "UI/UX Mobile"],
   },
   {
     id: 2,
@@ -131,14 +131,22 @@ export const services = [
     title: "Développement Web",
     description:
       "Sites web et applications web modernes avec React, Next.js et Laravel. Interfaces responsives, SEO-friendly et haute performance.",
-    highlights: ["React / Next.js", "Laravel / PHP", "MySQL", "Design Responsive"],
+    highlights: ["React / Next.js", "Laravel / PHP", "MySQL"],
   },
   {
     id: 3,
+    icon: "monitor",
+    title: "Développement Desktop",
+    description:
+      "Applications desktop robustes avec C# et .NET. Interfaces riches WPF/WinForms, gestion de base de données et intégration système Windows.",
+    highlights: ["C# / .NET", "WPF / WinForms", "MySQL / SQLite"],
+  },
+  {
+    id: 4,
     icon: "shield",
     title: "Cybersécurité",
     description:
-      "Audit de vulnérabilités, tests de pénétration et sécurisation d'applications. Expertise en cryptographie et administration sécurisée des systèmes.",
+      "Audit de vulnérabilités,Chiffrement, tests de pénétration et sécurisation d'applications. Expertise en cryptographie et administration sécurisée des systèmes.",
     highlights: ["Audit de vulnérabilités", "Tests de pénétration", "Cryptographie", "Kali Linux"],
   },
 ];

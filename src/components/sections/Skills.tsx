@@ -1,108 +1,158 @@
 "use client";
 
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { BarChart2 } from "lucide-react";
+import { motion } from "framer-motion";
 import SectionBadge from "@/components/SectionBadge";
 
-const mainSkills = [
-  { name: "Flutter", abbr: "Fl", percent: 85 },
-  { name: "Firebase", abbr: "Fb", percent: 80 },
-  { name: "React", abbr: "Re", percent: 75 },
-  { name: "JavaScript", abbr: "JS", percent: 78 },
-  { name: "Kali Linux", abbr: "KL", percent: 75 },
-  { name: "MySQL", abbr: "DB", percent: 78 },
-  { name: "C / C++", abbr: "C+", percent: 72 },
-  { name: "Laravel", abbr: "Lv", percent: 68 },
+/* ── Direction d'entrée pour chacune des 8 cartes ── */
+const flyFrom = [
+  { x: -140, y: -100 }, // 0 — haut-gauche
+  { x:    0, y: -140 }, // 1 — haut
+  { x:  140, y: -100 }, // 2 — haut-droite
+  { x: -140, y:    0 }, // 3 — gauche
+  { x:  140, y:    0 }, // 4 — droite
+  { x: -140, y:  100 }, // 5 — bas-gauche
+  { x:    0, y:  140 }, // 6 — bas
+  { x:  140, y:  100 }, // 7 — bas-droite
 ];
 
+/* ── Logos disponibles dans /public/logos/ ── */
+const logoMap: Record<string, string> = {
+  "Flutter":  "/logos/flutter.jpg",
+  "Firebase": "/logos/firebas.jpg",
+  "Kali Linux": "/logos/kalilinux.jpg",
+  "MySQL":    "/logos/mysql.jpg",
+  "Laravel":  "/logos/laravel.jpg",
+};
+
+const mainSkills = [
+  { name: "Flutter",    abbr: "Fl", percent: 85 },
+  { name: "Firebase",   abbr: "Fb", percent: 80 },
+  { name: "React",      abbr: "Re", percent: 75 },
+  { name: "JavaScript", abbr: "JS", percent: 78 },
+  { name: "Kali Linux", abbr: "KL", percent: 75 },
+  { name: "MySQL",      abbr: "DB", percent: 78 },
+  { name: "C / C++",    abbr: "C+", percent: 72 },
+  { name: "Laravel",    abbr: "Lv", percent: 68 },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+const RADIUS = 44;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+/* ── Carte compétence ── */
 function CircleSkill({
-  name,
-  abbr,
-  percent,
-  inView,
-  delay,
+  name, abbr, percent, inView, index,
 }: {
-  name: string;
-  abbr: string;
-  percent: number;
-  inView: boolean;
-  delay: number;
+  name: string; abbr: string; percent: number;
+  inView: boolean; index: number;
 }) {
-  const radius = 44;
-  const circumference = 2 * Math.PI * radius;
-  const dashoffset = circumference - (percent / 100) * circumference;
+  const dashoffset = CIRCUMFERENCE - (percent / 100) * CIRCUMFERENCE;
+  const logo       = logoMap[name];
+  const delaySec   = index * 0.09;          // délai Framer Motion (secondes)
+  const delayMs    = index * 90;            // délai SVG stroke (millisecondes)
+  const dir        = flyFrom[index] ?? { x: 0, y: 100 };
 
   return (
-    <div
+    <motion.div
       className="flex flex-col items-center gap-3"
-      style={{ transitionDelay: `${delay}ms` }}
+      initial={{ opacity: 0, x: dir.x, y: dir.y }}
+      animate={
+        inView
+          ? { opacity: 1, x: 0, y: 0 }
+          : { opacity: 0, x: dir.x, y: dir.y }
+      }
+      transition={{ duration: 0.7, delay: delaySec, ease }}
     >
       <div className="relative w-28 h-28">
-        {/* SVG circle progress */}
+        {/* Anneau de progression SVG */}
         <svg className="w-28 h-28 -rotate-90" viewBox="0 0 100 100">
-          {/* Background track */}
+          {/* Piste de fond */}
           <circle
-            cx="50"
-            cy="50"
-            r={radius}
-            fill="none"
-            stroke="#2a2a2a"
-            strokeWidth="2"
+            cx="50" cy="50" r={RADIUS}
+            fill="none" stroke="#2a2a2a" strokeWidth="2"
           />
-          {/* Progress arc */}
+          {/* Arc de progression */}
           <circle
-            cx="50"
-            cy="50"
-            r={radius}
-            fill="none"
-            stroke="#2ecc71"
-            strokeWidth="2"
+            cx="50" cy="50" r={RADIUS}
+            fill="none" stroke="#2ecc71" strokeWidth="2"
             strokeLinecap="round"
-            strokeDasharray={circumference}
+            strokeDasharray={CIRCUMFERENCE}
             style={{
-              strokeDashoffset: inView ? dashoffset : circumference,
-              transition: `stroke-dashoffset 1.2s ease-out ${delay}ms`,
+              strokeDashoffset: inView ? dashoffset : CIRCUMFERENCE,
+              transition: `stroke-dashoffset 1.3s ease-out ${delayMs}ms`,
             }}
           />
         </svg>
 
-        {/* Center content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-lg font-bold text-white leading-none">{abbr}</span>
-          <span className="text-accent font-bold text-sm leading-none mt-1">{percent}%</span>
+        {/* Contenu central */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+          {logo ? (
+            <>
+              <Image
+                src={logo}
+                alt={name}
+                width={46}
+                height={46}
+                className="rounded-lg object-contain"
+              />
+              <span className="text-accent font-bold text-xs leading-none">{percent}%</span>
+            </>
+          ) : (
+            <>
+              <span className="text-lg font-bold text-white leading-none">{abbr}</span>
+              <span className="text-accent font-bold text-sm leading-none">{percent}%</span>
+            </>
+          )}
         </div>
       </div>
       <span className="text-sm text-muted text-center">{name}</span>
-    </div>
+    </motion.div>
   );
 }
 
+/* ── Section principale ── */
 export default function Skills() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
 
   return (
     <section id="skills" className="min-h-screen flex flex-col justify-center px-10 lg:px-16 py-20 bg-dark">
-      <div
-        ref={ref}
-        className={`max-w-4xl transition-all duration-700 ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        }`}
-      >
-        <SectionBadge icon={BarChart2} label="Mes Compétences" />
+      <div className="max-w-4xl">
 
-        <h2 className="section-heading mb-16">
-          Mes<br />
-          <span className="text-accent">avantages</span>
-        </h2>
+        {/* Titre */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease }}
+        >
+          <SectionBadge icon={BarChart2} label="Mes Compétences" />
+          <h2 className="section-heading mb-16">
+            Mes<br />
+            <span className="text-accent">avantages</span>
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 lg:gap-12">
+        {/* Grille — le ref déclenche l'animation d'entrée */}
+        <div
+          ref={ref}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 lg:gap-12"
+        >
           {mainSkills.map((skill, i) => (
-            <CircleSkill key={skill.name} {...skill} inView={inView} delay={i * 80} />
+            <CircleSkill key={skill.name} {...skill} inView={inView} index={i} />
           ))}
         </div>
 
-        {/* Secondary skills text list */}
-        <div className="mt-16 pt-8 border-t border-dark-4">
+        {/* Compétences secondaires */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.7, ease }}
+          className="mt-16 pt-8 border-t border-dark-4"
+        >
           <p className="text-xs text-muted uppercase tracking-widest mb-5">Également maîtrisé</p>
           <div className="flex flex-wrap gap-2">
             {[
@@ -118,7 +168,7 @@ export default function Skills() {
               </span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
