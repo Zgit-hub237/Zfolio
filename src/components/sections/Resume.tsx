@@ -49,7 +49,7 @@ const mainTimeline: TimelineGroupData[] = [
           type: "experience",
           description:
             "Conception et développement d'applications web modernes au sein de SpeDev. Collaboration en équipe sur des projets clients variés.",
-          tags: ["React", "Next.js", "Web", "SpeDev"],
+          tags: ["Next.js", "Tailwind CSS", "Web", "SpeDev"],
         },
       },
     ],
@@ -81,8 +81,8 @@ const mainTimeline: TimelineGroupData[] = [
           type: "experience",
           duration: "7 mois",
           description:
-            "Conception et déploiement d'une solution d'authentification biométrique sécurisée. Intégration mobile, gestion de base de données et sécurité applicative.",
-          tags: ["Mobile", "Biométrie", "Sécurité", "Flutter"],
+            "Conception et déploiement d'une solution d'authentification biométrique sécurisée dans un contexte d'examen. Intégration mobile, gestion de base de données et sécurité applicative.",
+          tags: ["Machine Learning", "Biométrie", "Sécurité", "Flutter", "Firebase"],
         },
       },
       {
@@ -95,6 +95,22 @@ const mainTimeline: TimelineGroupData[] = [
           description:
             "Application mobile multiplateforme de petites annonces avec messagerie en temps réel et authentification sécurisée.",
           tags: ["Flutter", "Firebase", "Dart", "Real-time"],
+        },
+      },
+    ],
+  },
+  {
+    period: "Sept. 2024 — Present",
+    items: [
+      {
+        title: "Proffesseur particulier en Informatique",
+        company: "Mme CHRISTELLE Alatsa",
+        current: true,
+        detail: {
+          type: "experience",
+          description:
+            "Encadrement et suivie d'eleve de classe de premierere et terminal serie TI au college Francois Xavier Vogt",
+          tags: ["sécurité informatique", "Maintenances", "Programmation", "Réseaux"],
         },
       },
     ],
