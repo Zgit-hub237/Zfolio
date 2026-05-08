@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { Settings, Mail, X, Menu, Download, Sun, Moon } from "lucide-react";
+import { Settings, Mail, Download, Sun, Moon } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import { useT, type Lang } from "@/contexts/LangContext";
 
@@ -42,7 +42,6 @@ function GitHubIcon({ size = 14 }: { size?: number }) {
 }
 
 export default function Sidebar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const { lang, setLang, t } = useT();
@@ -52,29 +51,7 @@ export default function Sidebar() {
   const isDark = resolvedTheme === "dark";
 
   return (
-    <>
-      {/* Mobile hamburger */}
-      <button
-        onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed top-5 left-5 z-50 lg:hidden w-10 h-10 bg-dark-2 border border-dark-4 rounded-xl flex items-center justify-center text-muted hover:text-foreground transition-colors"
-        aria-label="Menu"
-      >
-        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-      </button>
-
-      {/* Overlay mobile */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 z-30 lg:hidden"
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 left-0 h-screen w-[270px] bg-dark-2 border-r border-dark-4 z-40 flex flex-col transition-transform duration-300
-          ${mobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
-      >
+    <aside className="fixed top-0 left-0 h-screen w-[270px] bg-dark-2 border-r border-dark-4 z-40 hidden lg:flex flex-col">
         {/* Top header */}
         <div className="flex items-center justify-between px-4 pt-5 pb-5 border-b border-dark-4">
           <div className="flex items-center gap-2">
@@ -185,12 +162,11 @@ export default function Sidebar() {
             <Download size={14} />
             {t.sidebar.downloadCV}
           </a>
-          <a href="#contact" className="btn-hire" onClick={() => setMobileOpen(false)}>
+          <a href="#contact" className="btn-hire">
             <Mail size={14} />
             {t.sidebar.contactMe}
           </a>
         </div>
       </aside>
-    </>
   );
 }

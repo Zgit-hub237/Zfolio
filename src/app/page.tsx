@@ -1,5 +1,6 @@
 import { LangProvider } from "@/contexts/LangContext";
 import Sidebar from "@/components/Sidebar";
+import MobileProfile from "@/components/MobileProfile";
 import RightNav from "@/components/RightNav";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -15,6 +16,7 @@ export default function Home() {
       <div className="bg-dark min-h-screen">
         <Sidebar />
         <main className="lg:ml-[270px] lg:mr-10">
+          <MobileProfile />
           <Hero />
           <About />
           <Resume />

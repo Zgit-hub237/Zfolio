@@ -43,7 +43,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 pt-20 lg:pt-0 pb-10 relative overflow-hidden bg-dark"
+      className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 pt-8 lg:pt-0 pb-10 relative overflow-hidden bg-dark"
     >
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -58,29 +58,21 @@ export default function Hero() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease }}
-        className="relative z-10 flex items-center justify-between mb-8 w-full"
+        className="relative z-10 flex items-center mb-8 w-full"
       >
         <div className="inline-flex items-center gap-2 px-4 py-2 border border-dark-4 rounded-full text-xs font-medium text-muted uppercase tracking-widest">
           <Home size={12} />
           {t.hero.badge}
         </div>
-
-        <button
-          onClick={() => setMenuOpen(true)}
-          className="lg:hidden w-13 h-13 rounded-full border border-dark-4 flex items-center justify-center hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 group"
-          aria-label="Menu"
-        >
-          <Menu size={22} className="text-muted group-hover:text-accent transition-colors" />
-        </button>
       </motion.div>
 
       <button
         onClick={() => setMenuOpen(true)}
-        className="hidden lg:flex fixed right-5 z-[55] w-14 h-14 rounded-full border border-dark-4 items-center justify-center hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 group"
-        style={{ top: "calc(50vh - 210px)" }}
+        className="flex fixed right-4 bottom-6 lg:bottom-auto lg:right-5 lg:top-[calc(50vh-210px)] z-[55] w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-dark-4 items-center justify-center hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 group"
         aria-label="Menu"
       >
-        <Menu size={24} className="text-muted group-hover:text-accent transition-colors" />
+        <Menu size={20} className="text-muted group-hover:text-accent transition-colors lg:hidden" />
+        <Menu size={24} className="text-muted group-hover:text-accent transition-colors hidden lg:block" />
       </button>
 
       <div className="relative z-10 max-w-4xl w-full">
