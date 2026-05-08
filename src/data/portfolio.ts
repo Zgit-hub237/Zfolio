@@ -89,8 +89,8 @@ export const experience = [
     duration: "5 mois",
     current: true,
     description:
-      "Conception et développement d'un portfolio professionnel responsive avec Laravel. Interface d'administration pour la gestion du contenu, système de projet intégré, avec service de messagerie.",
-    tags: ["Laravel", "PHP", "MySQL", "Responsive Design"],
+      "Conception et développement d'un portfolio professionnel responsive avec Next.js. Interface d'administration pour la gestion du contenu, système de projet intégré, avec service de messagerie.",
+    tags: ["Next.js", "React", "Node.js", "Responsive Design"],
   },
   {
     id: 2,
@@ -122,7 +122,7 @@ export const services = [
     icon: "smartphone",
     title: "Développement Mobile",
     description:
-      "Applications iOS et Android performantes avec Flutter. Authentification sécurisée, messagerie temps réel, expériences natives multiplateformes.",
+      "Applications Android performantes avec Flutter. Interfaces modernes, intégration Firebase, gestion de l'état et optimisation pour une expérience utilisateur fluide.",
     highlights: ["Flutter & Dart", "Firebase", "UI/UX Mobile"],
   },
   {
@@ -154,25 +154,25 @@ export const services = [
 export const projects = [
   {
     id: 1,
-    title: "Portfolio Laravel",
+    title: "Portfolio Next.js",
     description:
-      "Portfolio professionnel responsive avec Laravel, interface d'administration pour la gestion du contenu, système de projet intégré et service de messagerie.",
+      "Portfolio professionnel responsive avec nextjs, interface d'administration pour la gestion du contenu, système de projet intégré et service de messagerie.",
     image: "/images/project-portfolio.jpg",
-    tags: ["Laravel", "PHP", "MySQL", "CSS"],
+    tags: ["Next.js", "MySQL", "CSS"],
     category: "web",
-    link: "https://zportfolio-main-ajkbik.laravel.cloud/",
-    github: null,
+    link: "https://zfolio-zeta.vercel.app/",
+    github: "https://github.com/Zgit-hub237/Zfolio/",
   },
   {
     id: 2,
-    title: "App Petites Annonces",
+    title: "AnnounceApp",
     description:
       "Application mobile multiplateforme de petites annonces avec système de messagerie en temps réel et authentification sécurisée.",
     image: "/images/project-annonces.jpg",
     tags: ["Flutter", "Firebase", "Dart", "Real-time"],
     category: "mobile",
     link: null,
-    github: "https://github.com/Zgit-hub237",
+    github: "https://github.com/Zgit-hub237/AnnounceApp/",
   },
   {
     id: 3,
@@ -183,7 +183,29 @@ export const projects = [
     tags: ["Mobile", "Sécurité", "Biométrie", "SQLite"],
     category: "security",
     link: null,
-    github: null,
+    github: "https://github.com/Zgit-hub237/ZAUTHENTIK",
+  },
+  {
+    id: 4,
+    title: "Propelize",
+    description:
+      "Système complet de gestion des véhicules avec authentification JWT, autorisation par rôles et interface web responsive. Tests automatisés Playwright et documentation Swagger/OpenAPI.",
+    image: "/images/project-propelize.jpg",
+    tags: ["Node.js", "Express", "SQLite", "JWT", "Playwright", "Swagger"],
+    category: "web",
+    link: null,
+    github: "https://github.com/Zgit-hub237/propelize-project",
+  },
+  {
+    id: 5,
+    title: "Dataflow Testing",
+    description:
+      "Démonstration des méthodologies de couverture de flux de données : All-Defs, All-Uses et All-DU-Paths. Comparatif tests complets (100%) vs tests incomplets.",
+    image: "/images/project-dataflow.jpg",
+    tags: ["JavaScript", "Jest", "Tests", "Coverage", "White-box"],
+    category: "web",
+    link: null,
+    github: "https://github.com/Zgit-hub237/dataflow-testing-project",
   },
 ];
 

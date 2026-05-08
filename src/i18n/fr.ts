@@ -285,6 +285,18 @@ export const fr: Translations = {
         description:
           "Solution d'authentification biométrique sécurisée pour application mobile. Intégration native, gestion de base de données et sécurité applicative.",
       },
+      {
+        id: 4,
+        title: "Propelize",
+        description:
+          "Système complet de gestion des véhicules avec authentification JWT, autorisation par rôles et interface web responsive. Tests automatisés Playwright et documentation Swagger/OpenAPI.",
+      },
+      {
+        id: 5,
+        title: "Dataflow Testing",
+        description:
+          "Démonstration des méthodologies de couverture de flux de données : All-Defs, All-Uses et All-DU-Paths. Comparatif entre tests complets (100% de couverture) et tests incomplets.",
+      },
     ],
   },
   contact: {
