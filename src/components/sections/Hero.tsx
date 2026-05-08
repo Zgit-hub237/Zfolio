@@ -68,11 +68,10 @@ export default function Hero() {
 
       <button
         onClick={() => setMenuOpen(true)}
-        className="flex fixed right-4 bottom-6 lg:bottom-auto lg:right-5 lg:top-[calc(50vh-210px)] z-[55] w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-dark-4 items-center justify-center hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 group"
+        className="flex fixed right-4 top-1/2 -translate-y-1/2 z-[55] w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-dark-4 items-center justify-center hover:border-accent/40 hover:bg-accent/5 transition-all duration-300 group"
         aria-label="Menu"
       >
-        <Menu size={20} className="text-muted group-hover:text-accent transition-colors lg:hidden" />
-        <Menu size={24} className="text-muted group-hover:text-accent transition-colors hidden lg:block" />
+        <Menu size={20} className="text-muted group-hover:text-accent transition-colors" />
       </button>
 
       <div className="relative z-10 max-w-4xl w-full">
