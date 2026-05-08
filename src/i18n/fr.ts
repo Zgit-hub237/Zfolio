@@ -69,6 +69,25 @@ export const fr: Translations = {
         ],
       },
       {
+        period: "Janv. 2026 — Mai 2026",
+        items: [
+          {
+            title: "Introduction à la Cybersécurité",
+            company: "Cisco Networking Academy — En ligne",
+            current: false,
+            detail: {
+              type: "education",
+              duration: "5 mois",
+              description:
+                "Formation certifiante aux bonnes pratiques en cybersécurité : vulnérabilités réseau, confidentialité des données, détection des menaces et principes fondamentaux de la sécurité informatique.",
+              tags: ["Cybersécurité", "Réseaux", "Détection des menaces", "Cisco"],
+              credlyBadgeId: "319af8d9-1563-44af-8618-0347b98a0168",
+              certificateUrl: "/cv/CERTIFICAT_CISCO_NETWORKING_ACADEMY_INTRODUCTION_A_LA_CYBERSECURITE.pdf",
+            },
+          },
+        ],
+      },
+      {
         period: "Oct. 2025 — Présent",
         items: [
           {
@@ -80,6 +99,18 @@ export const fr: Translations = {
               description:
                 "Approfondissement en ingénierie logicielle, conception de systèmes d'information sécurisés et intégration de technologies avancées.",
               tags: ["Génie Logiciel", "Cybersécurité", "Systèmes d'Information"],
+            },
+          },
+          {
+            title: "Développeur Freelance — SGP",
+            company: "Application Desktop C# / .NET",
+            current: false,
+            detail: {
+              type: "experience",
+              duration: "4 mois",
+              description:
+                "Développement d'une application desktop de gestion pénitentiaire. Conception et implémentation des fonctionnalités de gestion des détenus, suivi des dossiers et interface d'administration sécurisée.",
+              tags: ["C#", ".NET", "WPF", "SQLite", "Desktop"],
             },
           },
         ],
@@ -261,6 +292,7 @@ export const fr: Translations = {
       { key: "all", label: "Tous" },
       { key: "web", label: "Web" },
       { key: "mobile", label: "Mobile" },
+      { key: "desktop", label: "Desktop" },
       { key: "security", label: "Sécurité" },
     ],
     viewProject: "Voir le projet",
@@ -284,6 +316,12 @@ export const fr: Translations = {
         title: "Authentification Biométrique",
         description:
           "Solution d'authentification biométrique sécurisée pour application mobile. Intégration native, gestion de base de données et sécurité applicative.",
+      },
+      {
+        id: 6,
+        title: "SGP — Gestion Pénitentiaire",
+        description:
+          "Application desktop de gestion pénitentiaire avec authentification, gestion des détenus et suivi des dossiers. Interface WPF moderne et base de données SQLite.",
       },
       {
         id: 4,

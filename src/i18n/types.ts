@@ -6,6 +6,8 @@ export type ItemDetail = {
   duration?: string;
   stats?: Stat[];
   tags: string[];
+  credlyBadgeId?: string;
+  certificateUrl?: string;
 };
 
 export type TimelineItemData = {

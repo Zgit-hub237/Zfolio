@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import {
   FileText, ChevronDown, ChevronUp,
-  Clock, BookOpen, Briefcase, X, Download,
+  Clock, BookOpen, Briefcase, X, Download, Award,
 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useT } from "@/contexts/LangContext";
@@ -19,6 +19,15 @@ function DetailPopup({
   onClose: () => void;
   t: { educationLabel: string; experienceLabel: string };
 }) {
+  useEffect(() => {
+    if (!detail.credlyBadgeId || !show) return;
+    if (document.querySelector('script[src*="credly.com/assets/utilities/embed"]')) return;
+    const script = document.createElement("script");
+    script.src = "//cdn.credly.com/assets/utilities/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, [detail.credlyBadgeId, show]);
+
   return (
     <div
       className={`absolute left-0 top-full mt-3 z-50 w-[min(18rem,calc(100vw-2.5rem))]
@@ -74,13 +83,36 @@ function DetailPopup({
         </div>
       )}
 
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1.5 mb-3">
         {detail.tags.map((tag) => (
           <span key={tag} className="px-2 py-0.5 bg-dark-4 rounded-md text-[10px] text-muted">
             {tag}
           </span>
         ))}
       </div>
+
+      {detail.credlyBadgeId && (
+        <div className="flex items-center gap-2 pt-3 border-t border-dark-4">
+          <div
+            data-iframe-width="150"
+            data-iframe-height="270"
+            data-share-badge-id={detail.credlyBadgeId}
+            data-share-badge-host="https://www.credly.com"
+          />
+        </div>
+      )}
+
+      {detail.certificateUrl && (
+        <a
+          href={detail.certificateUrl}
+          download
+          onClick={(e) => e.stopPropagation()}
+          className="mt-3 flex items-center gap-2 px-3 py-2 bg-accent/10 border border-accent/20 rounded-xl text-accent text-[11px] font-medium hover:bg-accent/20 transition-all w-full justify-center"
+        >
+          <Award size={12} />
+          Télécharger le certificat
+        </a>
+      )}
     </div>
   );
 }

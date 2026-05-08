@@ -197,6 +197,17 @@ export const projects = [
     github: "https://github.com/Zgit-hub237/propelize-project",
   },
   {
+    id: 6,
+    title: "SGP — Gestion Pénitentiaire",
+    description:
+      "Application desktop de gestion pénitentiaire avec authentification, gestion des détenus et suivi des dossiers. Interface WPF moderne et base de données SQLite.",
+    image: "/images/project-sgp.jpg",
+    tags: ["C#", ".NET", "WPF", "SQLite", "Desktop"],
+    category: "desktop",
+    link: null,
+    github: "https://github.com/Zgit-hub237/SGP",
+  },
+  {
     id: 5,
     title: "Dataflow Testing",
     description:

@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Grid3X3, ExternalLink, Github, Code2, Smartphone, Shield } from "lucide-react";
+import { Grid3X3, ExternalLink, Github, Code2, Smartphone, Shield, Monitor } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { projects } from "@/data/portfolio";
 import { useT } from "@/contexts/LangContext";
 
-const categoryIcons = { web: Code2, mobile: Smartphone, security: Shield };
+const categoryIcons = { web: Code2, mobile: Smartphone, security: Shield, desktop: Monitor };
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");

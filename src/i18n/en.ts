@@ -69,6 +69,25 @@ export const en: Translations = {
         ],
       },
       {
+        period: "Jan. 2026 — May 2026",
+        items: [
+          {
+            title: "Introduction to Cybersecurity",
+            company: "Cisco Networking Academy — Online",
+            current: false,
+            detail: {
+              type: "education",
+              duration: "5 months",
+              description:
+                "Certified training in cybersecurity best practices: network vulnerabilities, data privacy, threat detection and fundamental principles of computer security.",
+              tags: ["Cybersecurity", "Networks", "Threat Detection", "Cisco"],
+              credlyBadgeId: "319af8d9-1563-44af-8618-0347b98a0168",
+              certificateUrl: "/cv/CERTIFICAT_CISCO_NETWORKING_ACADEMY_INTRODUCTION_A_LA_CYBERSECURITE.pdf",
+            },
+          },
+        ],
+      },
+      {
         period: "Oct. 2025 — Present",
         items: [
           {
@@ -80,6 +99,18 @@ export const en: Translations = {
               description:
                 "In-depth study of software engineering, design of secure information systems and integration of advanced technologies.",
               tags: ["Software Engineering", "Cybersecurity", "Information Systems"],
+            },
+          },
+          {
+            title: "Freelance Developer — SGP",
+            company: "Desktop Application C# / .NET",
+            current: false,
+            detail: {
+              type: "experience",
+              duration: "4 months",
+              description:
+                "Development of a desktop prison management application. Design and implementation of inmate management features, case tracking and secure administration interface.",
+              tags: ["C#", ".NET", "WPF", "SQLite", "Desktop"],
             },
           },
         ],
@@ -261,6 +292,7 @@ export const en: Translations = {
       { key: "all", label: "All" },
       { key: "web", label: "Web" },
       { key: "mobile", label: "Mobile" },
+      { key: "desktop", label: "Desktop" },
       { key: "security", label: "Security" },
     ],
     viewProject: "View project",
@@ -284,6 +316,12 @@ export const en: Translations = {
         title: "Biometric Authentication",
         description:
           "Secure biometric authentication solution for mobile application. Native integration, database management and application security.",
+      },
+      {
+        id: 6,
+        title: "SGP — Prison Management",
+        description:
+          "Desktop prison management application with authentication, inmate management and case tracking. Modern WPF interface and SQLite database.",
       },
       {
         id: 4,
