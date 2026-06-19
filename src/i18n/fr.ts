@@ -56,11 +56,28 @@ export const fr: Translations = {
         period: "Juin 2026 — Présent",
         items: [
           {
-            title: "Web Développeur",
-            company: "SpeDev, Yaoundé",
+            title: "Fondamentaux de la Sécurité API 2025",
+            company: "APISec University — En ligne",
             current: true,
             detail: {
+              type: "education",
+              description:
+                "Formation complète à la sécurité des API : pourquoi les API sont attaquées, exemples concrets de violations et Top 10 OWASP API Security. Analyse des attaques, gouvernance, tests et surveillance des API.",
+              tags: ["API Security", "OWASP", "Cybersécurité", "APISec University"],
+            },
+          },
+        ],
+      },
+      {
+        period: "Mars 2026 — Juin 2026",
+        items: [
+          {
+            title: "Web Développeur",
+            company: "SpeDev, Yaoundé",
+            current: false,
+            detail: {
               type: "experience",
+              duration: "3 mois",
               description:
                 "Conception et développement d'applications web modernes au sein de SpeDev. Collaboration en équipe sur des projets clients variés.",
               tags: ["Next.js", "Tailwind CSS", "Web", "SpeDev"],
@@ -145,12 +162,12 @@ export const fr: Translations = {
         ],
       },
       {
-        period: "Sept. 2024 — Présent",
+        period: "Sept. 2024 — Mai 2026",
         items: [
           {
             title: "Professeur particulier en Informatique",
             company: "Mme CHRISTELLE Alatsa",
-            current: true,
+            current: false,
             detail: {
               type: "experience",
               description:

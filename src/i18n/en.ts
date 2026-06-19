@@ -56,11 +56,28 @@ export const en: Translations = {
         period: "June 2026 — Present",
         items: [
           {
-            title: "Web Developer",
-            company: "SpeDev, Yaoundé",
+            title: "API Security Fundamentals 2025",
+            company: "APISec University — Online",
             current: true,
             detail: {
+              type: "education",
+              description:
+                "Comprehensive introduction to API security: why APIs are attacked, real-world breach examples and OWASP API Security Top 10. Attack analysis, governance, testing and monitoring of APIs.",
+              tags: ["API Security", "OWASP", "Cybersecurity", "APISec University"],
+            },
+          },
+        ],
+      },
+      {
+        period: "March 2026 — June 2026",
+        items: [
+          {
+            title: "Web Developer",
+            company: "SpeDev, Yaoundé",
+            current: false,
+            detail: {
               type: "experience",
+              duration: "3 months",
               description:
                 "Design and development of modern web applications within SpeDev. Team collaboration on various client projects.",
               tags: ["Next.js", "Tailwind CSS", "Web", "SpeDev"],
@@ -145,12 +162,12 @@ export const en: Translations = {
         ],
       },
       {
-        period: "Sept. 2024 — Present",
+        period: "Sept. 2024 — May 2026",
         items: [
           {
             title: "Private Computer Science Teacher",
             company: "Mrs. CHRISTELLE Alatsa",
-            current: true,
+            current: false,
             detail: {
               type: "experience",
               description:
