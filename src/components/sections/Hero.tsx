@@ -140,12 +140,12 @@ export default function Hero() {
           transition={{ duration: 0.75, delay: 0.25, ease }}
           className="lg:col-span-5 flex justify-center lg:justify-end mt-4 lg:mt-0"
         >
-          <div className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[400px] group">
+          <div className="relative w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[470px] group">
             {/* Glowing gradient aura backdrop */}
             <div className="absolute -inset-2 bg-gradient-to-tr from-accent/30 via-accent/10 to-emerald-500/20 rounded-[2.5rem] blur-xl opacity-60 group-hover:opacity-90 transition duration-700 animate-pulse" />
 
             {/* Glassmorphic Futuristic Frame */}
-            <div className="relative rounded-[2rem] p-3 sm:p-4 bg-dark-2/80 backdrop-blur-xl border border-dark-4 group-hover:border-accent/40 transition-all duration-500 shadow-2xl overflow-hidden">
+            <div className="relative rounded-[2rem] p-3.5 sm:p-5 bg-dark-2/80 backdrop-blur-xl border border-dark-4 group-hover:border-accent/40 transition-all duration-500 shadow-2xl overflow-hidden">
 
               {/* Tech Corner Brackets */}
               <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-accent/60 z-20 pointer-events-none" />
@@ -163,8 +163,8 @@ export default function Hero() {
                 <Image
                   src="/images/photo1.JPG"
                   alt="Loé Zegou"
-                  width={600}
-                  height={750}
+                  width={680}
+                  height={850}
                   priority
                   className="w-full h-full object-cover object-top filter contrast-[1.04] saturate-[1.04] transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />

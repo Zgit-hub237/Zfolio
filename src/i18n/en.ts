@@ -105,17 +105,18 @@ export const en: Translations = {
         ],
       },
       {
-        period: "Oct. 2025 — Present",
+        period: "Oct. 2025 — Jul. 2026",
         items: [
           {
             title: "Master I — Information Systems & Software Engineering",
             company: "University of Yaoundé I",
-            current: true,
+            current: false,
             detail: {
               type: "education",
+              duration: "Jul. 2026 (Completed)",
               description:
-                "In-depth study of software engineering, design of secure information systems and integration of advanced technologies.",
-              tags: ["Software Engineering", "Cybersecurity", "Information Systems"],
+                "Master I completed in July 2026. In-depth study of software engineering, design of secure information systems and integration of advanced technologies.",
+              tags: ["Master I Completed", "Software Engineering", "Cybersecurity", "Information Systems"],
             },
           },
           {

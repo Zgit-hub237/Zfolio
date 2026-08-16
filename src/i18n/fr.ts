@@ -105,17 +105,18 @@ export const fr: Translations = {
         ],
       },
       {
-        period: "Oct. 2025 — Présent",
+        period: "Oct. 2025 — Juil. 2026",
         items: [
           {
             title: "Master I — Système d'Information & Génie Logiciel",
             company: "Université de Yaoundé I",
-            current: true,
+            current: false,
             detail: {
               type: "education",
+              duration: "Juil. 2026 (Validé)",
               description:
-                "Approfondissement en ingénierie logicielle, conception de systèmes d'information sécurisés et intégration de technologies avancées.",
-              tags: ["Génie Logiciel", "Cybersécurité", "Systèmes d'Information"],
+                "Master I validé en Juillet 2026. Approfondissement en ingénierie logicielle, conception de systèmes d'information sécurisés et intégration de technologies avancées.",
+              tags: ["Master I Validé", "Génie Logiciel", "Cybersécurité", "Systèmes d'Information"],
             },
           },
           {
