@@ -62,8 +62,8 @@ export const education = [
     field: "Génie Logiciel & Systèmes Sécurisés",
     school: "Université de Yaoundé I",
     location: "Yaoundé, Cameroun",
-    period: "Depuis octobre 2025",
-    current: true,
+    period: "Octobre 2025 - Juillet 2026",
+    current: false,
     description:
       "Approfondissement en ingénierie logicielle, conception de systèmes d'information sécurisés et intégration de technologies avancées.",
   },

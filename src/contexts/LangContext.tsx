@@ -13,16 +13,21 @@ interface LangContextValue {
   lang: Lang;
   setLang: (l: Lang) => void;
   t: Translations;
+  menuOpen: boolean;
+  setMenuOpen: (open: boolean) => void;
 }
 
 const LangContext = createContext<LangContextValue>({
   lang: "fr",
   setLang: () => {},
   t: fr,
+  menuOpen: false,
+  setMenuOpen: () => {},
 });
 
 export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("fr");
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(LANG_KEY) as Lang | null;
@@ -40,7 +45,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <LangContext.Provider value={{ lang, setLang, t: lang === "fr" ? fr : en }}>
+    <LangContext.Provider value={{ lang, setLang, t: lang === "fr" ? fr : en, menuOpen, setMenuOpen }}>
       {children}
     </LangContext.Provider>
   );
