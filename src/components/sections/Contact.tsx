@@ -2,10 +2,14 @@
 
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Download } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
-import { personalInfo } from "@/data/portfolio";
+import { personalInfo, CV_PATH } from "@/data/portfolio";
 import { useT } from "@/contexts/LangContext";
+import RevealText from "@/components/ui/RevealText";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
@@ -34,6 +38,41 @@ export default function Contact() {
     }
   };
 
+  const infoRows = [
+    {
+      icon: Mail,
+      label: t.contact.emailLabel,
+      content: (
+        <a href={`mailto:${personalInfo.email}`} className="text-sm text-foreground hover:text-accent transition-colors">
+          {personalInfo.email}
+        </a>
+      ),
+    },
+    {
+      icon: Phone,
+      label: t.contact.phoneLabel,
+      content: (
+        <a href={`tel:${personalInfo.phone.replace(/\s/g, "")}`} className="text-sm text-foreground hover:text-accent transition-colors">
+          {personalInfo.phone}
+        </a>
+      ),
+    },
+    {
+      icon: MapPin,
+      label: t.contact.locationLabel,
+      content: <span className="text-sm text-foreground">{personalInfo.address}</span>,
+    },
+    {
+      icon: Download,
+      label: t.contact.cvLabel,
+      content: (
+        <a href={CV_PATH} download className="text-sm text-foreground hover:text-accent transition-colors">
+          {t.contact.downloadCV}
+        </a>
+      ),
+    },
+  ];
+
   return (
     <section id="contact" className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-14 sm:py-20 bg-dark">
       <div
@@ -44,60 +83,25 @@ export default function Contact() {
       >
         <SectionBadge icon={Mail} label={t.contact.badge} />
 
-        <h2 className="section-heading mb-8 sm:mb-12">
+        <RevealText as="h2" className="section-heading mb-8 sm:mb-12">
           {t.contact.heading.split(" ").slice(0, -1).join(" ")}<br />
-          <span className="text-accent">{t.contact.heading.split(" ").slice(-1)[0]}</span>
-        </h2>
+          <span className="gradient-text">{t.contact.heading.split(" ").slice(-1)[0]}</span>
+        </RevealText>
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Left info */}
-          <div className="lg:col-span-2 space-y-7">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl border border-dark-4 flex items-center justify-center flex-shrink-0">
-                <Mail size={15} className="text-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-muted uppercase tracking-widest mb-1">{t.contact.emailLabel}</p>
-                <a href={`mailto:${personalInfo.email}`} className="text-sm text-foreground hover:text-accent transition-colors">
-                  {personalInfo.email}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl border border-dark-4 flex items-center justify-center flex-shrink-0">
-                <Phone size={15} className="text-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-muted uppercase tracking-widest mb-1">{t.contact.phoneLabel}</p>
-                <a href={`tel:${personalInfo.phone}`} className="text-sm text-foreground hover:text-accent transition-colors">
-                  {personalInfo.phone}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl border border-dark-4 flex items-center justify-center flex-shrink-0">
-                <MapPin size={15} className="text-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-muted uppercase tracking-widest mb-1">{t.contact.locationLabel}</p>
-                <span className="text-sm text-foreground">{personalInfo.address}</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl border border-dark-4 flex items-center justify-center flex-shrink-0">
-                <Download size={15} className="text-accent" />
-              </div>
-              <div>
-                <p className="text-xs text-muted uppercase tracking-widest mb-1">{t.contact.cvLabel}</p>
-                <a href="/cv/CV_ZEGOU_MEGNIZON_LOE.pdf" download
-                  className="text-sm text-foreground hover:text-accent transition-colors">
-                  {t.contact.downloadCV}
-                </a>
-              </div>
-            </div>
+          <div className="lg:col-span-2 space-y-4">
+            {infoRows.map(({ icon: Icon, label, content }) => (
+              <SpotlightCard key={label} className="flex items-start gap-4 p-3 rounded-2xl">
+                <div className="w-10 h-10 rounded-xl border border-dark-4 flex items-center justify-center flex-shrink-0">
+                  <Icon size={15} className="text-accent" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted uppercase tracking-widest mb-1">{label}</p>
+                  {content}
+                </div>
+              </SpotlightCard>
+            ))}
 
             <div className="pt-4 border-t border-dark-4">
               <p className="text-xs text-muted uppercase tracking-widest mb-4">{t.contact.socialLabel}</p>
@@ -119,69 +123,94 @@ export default function Contact() {
 
           {/* Right form */}
           <div className="lg:col-span-3">
-            {status === "sent" ? (
-              <div className="border border-dark-4 rounded-2xl p-10 flex flex-col items-center justify-center text-center bg-dark-2">
-                <CheckCircle2 size={44} className="text-accent mb-4" />
-                <h3 className="text-foreground font-bold text-xl mb-2">{t.contact.sentTitle}</h3>
-                <p className="text-muted text-sm mb-6">{t.contact.sentMessage}</p>
-                <button onClick={() => setStatus("idle")}
-                  className="px-6 py-2.5 border border-dark-4 rounded-full text-sm text-muted hover:text-accent hover:border-accent/30 transition-all">
-                  {t.contact.newMessageButton}
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+            <AnimatePresence mode="wait">
+              {status === "sent" ? (
+                <motion.div
+                  key="sent"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 26 }}
+                  className="border border-dark-4 rounded-2xl p-10 flex flex-col items-center justify-center text-center bg-dark-2"
+                >
+                  <motion.div
+                    initial={{ scale: 0, rotate: -30 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
+                  >
+                    <CheckCircle2 size={44} className="text-accent mb-4" />
+                  </motion.div>
+                  <h3 className="text-foreground font-display font-bold text-xl mb-2">{t.contact.sentTitle}</h3>
+                  <p className="text-muted text-sm mb-6">{t.contact.sentMessage}</p>
+                  <button onClick={() => setStatus("idle")}
+                    className="px-6 py-2.5 border border-dark-4 rounded-full text-sm text-muted hover:text-accent hover:border-accent/30 transition-all">
+                    {t.contact.newMessageButton}
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.35 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.nameLabel}</label>
+                      <input type="text" name="name" value={form.name} onChange={handleChange} required
+                        placeholder={t.contact.namePlaceholder}
+                        className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors placeholder:text-muted/30" />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.emailFieldLabel}</label>
+                      <input type="email" name="email" value={form.email} onChange={handleChange} required
+                        placeholder={t.contact.emailPlaceholder}
+                        className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors placeholder:text-muted/30" />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.nameLabel}</label>
-                    <input type="text" name="name" value={form.name} onChange={handleChange} required
-                      placeholder={t.contact.namePlaceholder}
+                    <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.subjectLabel}</label>
+                    <input type="text" name="subject" value={form.subject} onChange={handleChange} required
+                      placeholder={t.contact.subjectPlaceholder}
                       className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors placeholder:text-muted/30" />
                   </div>
+
                   <div>
-                    <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.emailFieldLabel}</label>
-                    <input type="email" name="email" value={form.email} onChange={handleChange} required
-                      placeholder={t.contact.emailPlaceholder}
-                      className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors placeholder:text-muted/30" />
+                    <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.messageLabel}</label>
+                    <textarea name="message" value={form.message} onChange={handleChange} required rows={5}
+                      placeholder={t.contact.messagePlaceholder}
+                      className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors resize-none placeholder:text-muted/30" />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.subjectLabel}</label>
-                  <input type="text" name="subject" value={form.subject} onChange={handleChange} required
-                    placeholder={t.contact.subjectPlaceholder}
-                    className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors placeholder:text-muted/30" />
-                </div>
-
-                <div>
-                  <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.messageLabel}</label>
-                  <textarea name="message" value={form.message} onChange={handleChange} required rows={5}
-                    placeholder={t.contact.messagePlaceholder}
-                    className="w-full bg-dark-2 border border-dark-4 focus:border-accent/40 rounded-xl px-4 py-3 text-foreground text-sm outline-none transition-colors resize-none placeholder:text-muted/30" />
-                </div>
-
-                {status === "error" && (
-                  <p className="text-red-400 text-xs text-center py-2">
-                    {t.contact.errorMessage}
-                  </p>
-                )}
-
-                <button type="submit" disabled={status === "sending"}
-                  className="btn-hire disabled:opacity-50 disabled:cursor-not-allowed">
-                  {status === "sending" ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-[#0f0f0f]/30 border-t-[#0f0f0f] rounded-full animate-spin" />
-                      {t.contact.sendingButton}
-                    </>
-                  ) : (
-                    <>
-                      <Send size={14} />
-                      {t.contact.sendButton}
-                    </>
+                  {status === "error" && (
+                    <p className="text-red-400 text-xs text-center py-2">
+                      {t.contact.errorMessage}
+                    </p>
                   )}
-                </button>
-              </form>
-            )}
+
+                  <MagneticButton className="block w-full">
+                    <button type="submit" disabled={status === "sending"}
+                      className="btn-hire btn-shine disabled:opacity-50 disabled:cursor-not-allowed">
+                      {status === "sending" ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-[#0f0f0f]/30 border-t-[#0f0f0f] rounded-full animate-spin" />
+                          {t.contact.sendingButton}
+                        </>
+                      ) : (
+                        <>
+                          <Send size={14} />
+                          {t.contact.sendButton}
+                        </>
+                      )}
+                    </button>
+                  </MagneticButton>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

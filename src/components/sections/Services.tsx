@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import SectionBadge from "@/components/SectionBadge";
 import { services } from "@/data/portfolio";
 import { useT } from "@/contexts/LangContext";
+import RevealText from "@/components/ui/RevealText";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 const iconMap = {
   smartphone: Smartphone,
@@ -28,10 +30,10 @@ export default function Services() {
           transition={{ duration: 0.6, ease }}
         >
           <SectionBadge icon={Layers} label={t.services.badge} />
-          <h2 className="section-heading mb-12">
+          <RevealText as="h2" className="section-heading mb-12">
             {t.services.heading.split(" ").slice(0, -1).join(" ")}<br />
-            <span className="text-accent">{t.services.heading.split(" ").slice(-1)[0]}</span>
-          </h2>
+            <span className="gradient-text">{t.services.heading.split(" ").slice(-1)[0]}</span>
+          </RevealText>
         </motion.div>
 
         <div className="space-y-4">
@@ -46,22 +48,32 @@ export default function Services() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.55, delay: i * 0.1, ease }}
-                className="service-card"
               >
-                <div className="flex-1 mr-6">
-                  <h3 className="text-foreground text-base sm:text-xl font-semibold mb-2">
-                    {translated?.title ?? service.title}
-                  </h3>
-                  <p className="text-muted text-sm leading-relaxed mb-3">
-                    {translated?.description ?? service.description}
-                  </p>
-                  <p className="text-accent text-xs font-bold uppercase tracking-widest">
-                    {count}
-                  </p>
-                </div>
-                <div className="text-accent opacity-40 transition-opacity flex-shrink-0">
-                  <Icon size={36} strokeWidth={1.5} />
-                </div>
+                <SpotlightCard className="service-card">
+                  <div className="flex-1 mr-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-[10px] font-mono text-accent/50 tracking-widest">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="text-foreground text-base sm:text-xl font-semibold">
+                        {translated?.title ?? service.title}
+                      </h3>
+                    </div>
+                    <p className="text-muted text-sm leading-relaxed mb-3">
+                      {translated?.description ?? service.description}
+                    </p>
+                    <p className="text-accent text-xs font-bold uppercase tracking-widest">
+                      {count}
+                    </p>
+                  </div>
+                  <motion.div
+                    className="text-accent opacity-40 group-hover:opacity-100 flex-shrink-0"
+                    whileHover={{ scale: 1.1, rotate: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                  >
+                    <Icon size={36} strokeWidth={1.5} />
+                  </motion.div>
+                </SpotlightCard>
               </motion.div>
             );
           })}

@@ -3,9 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { AnimatePresence, motion } from "framer-motion";
 import { Settings, Mail, Download, Sun, Moon } from "lucide-react";
-import { personalInfo } from "@/data/portfolio";
+import { personalInfo, CV_PATH } from "@/data/portfolio";
 import { useT, type Lang } from "@/contexts/LangContext";
+import ActiveIndicator from "@/components/ui/ActiveIndicator";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 function InstagramIcon({ size = 14 }: { size?: number }) {
   return (
@@ -78,14 +81,25 @@ export default function Sidebar() {
 
         {/* Profile content */}
         <div className="flex-1 flex flex-col items-center px-6 py-6 overflow-y-auto">
-          <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-dark-4 border border-dark-4 mb-3 flex-shrink-0 relative">
-            <Image
-              src="/images/profile.jpg"
-              alt="Loé Zegou Megnizon"
-              fill
-              className="object-cover object-top"
-              priority
+          <div className="relative group mb-3 flex-shrink-0">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-1 rounded-[1.35rem] opacity-70 group-hover:opacity-100 transition-opacity duration-500 motion-safe:animate-spin-slower pointer-events-none"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, rgb(var(--accent-rgb) / 0.7), transparent 25%, rgb(var(--accent-2-rgb) / 0.7), transparent 75%, rgb(var(--accent-rgb) / 0.7))",
+              }}
             />
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-dark-4 border border-dark-4">
+              <Image
+                src="/images/profile.jpg"
+                alt="Loé Zegou Megnizon"
+                fill
+                sizes="176px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
           </div>
 
           <p className="text-foreground font-bold text-sm mb-5 text-center tracking-wide">
@@ -109,10 +123,25 @@ export default function Sidebar() {
             {/* Theme toggle */}
             <button
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              title={isDark ? "Mode clair" : "Mode sombre"}
-              className="w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 transition-all duration-200"
+              title={mounted ? (isDark ? "Mode clair" : "Mode sombre") : undefined}
+              className="relative w-9 h-9 rounded-full border border-dark-4 flex items-center justify-center overflow-hidden text-muted hover:text-accent hover:border-accent/30 transition-colors duration-200"
             >
-              {mounted ? (isDark ? <Sun size={14} /> : <Moon size={14} />) : <span className="w-3.5 h-3.5" />}
+              <AnimatePresence mode="wait" initial={false}>
+                {mounted ? (
+                  <motion.span
+                    key={isDark ? "sun" : "moon"}
+                    initial={{ rotate: -90, scale: 0, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    exit={{ rotate: 90, scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex items-center justify-center"
+                  >
+                    {isDark ? <Sun size={14} /> : <Moon size={14} />}
+                  </motion.span>
+                ) : (
+                  <span className="w-3.5 h-3.5" />
+                )}
+              </AnimatePresence>
             </button>
 
             {/* Lang toggles */}
@@ -120,13 +149,14 @@ export default function Sidebar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all duration-200 ${
+                className={`relative px-3 py-1.5 rounded-full border text-xs font-semibold transition-colors duration-200 ${
                   lang === l
-                    ? "bg-accent text-[#0f0f0f] border-accent"
+                    ? "text-[#0f0f0f] border-accent"
                     : "border-dark-4 text-muted hover:text-accent hover:border-accent/30"
                 }`}
               >
-                {l.toUpperCase()}
+                {lang === l && <ActiveIndicator layoutId="lang-toggle-sidebar" />}
+                <span className="relative z-10">{l.toUpperCase()}</span>
               </button>
             ))}
           </div>
@@ -154,18 +184,22 @@ export default function Sidebar() {
 
         {/* CTA */}
         <div className="px-6 pb-8 flex-shrink-0 space-y-3" suppressHydrationWarning>
-          <a
-            href="/cv/CV_ZEGOU_MEGNIZON_LOE.pdf"
-            download
-            className="flex items-center justify-center gap-2 w-full py-2.5 border border-accent/30 rounded-2xl text-accent text-sm font-medium hover:bg-accent/10 transition-all duration-200"
-          >
-            <Download size={14} />
-            {t.sidebar.downloadCV}
-          </a>
-          <a href="#contact" className="btn-hire">
-            <Mail size={14} />
-            {t.sidebar.contactMe}
-          </a>
+          <MagneticButton className="block w-full">
+            <a
+              href={CV_PATH}
+              download
+              className="flex items-center justify-center gap-2 w-full py-2.5 border border-accent/30 rounded-2xl text-accent text-sm font-medium hover:bg-accent/10 transition-all duration-200"
+            >
+              <Download size={14} />
+              {t.sidebar.downloadCV}
+            </a>
+          </MagneticButton>
+          <MagneticButton className="block w-full">
+            <a href="#contact" className="btn-hire btn-shine">
+              <Mail size={14} />
+              {t.sidebar.contactMe}
+            </a>
+          </MagneticButton>
         </div>
       </aside>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Home, User, FileText, Layers, BarChart2, Grid3X3, Mail, Menu } from "lucide-react";
 import { useT } from "@/contexts/LangContext";
+import ActiveIndicator from "@/components/ui/ActiveIndicator";
 
 export default function RightNav() {
   const [active, setActive] = useState("#hero");
@@ -52,13 +53,14 @@ export default function RightNav() {
           key={href}
           href={href}
           title={label}
-          className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${
-            active === href
-              ? "text-accent bg-accent/10"
-              : "text-muted hover:text-foreground"
+          className={`relative w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 ${
+            active === href ? "text-accent" : "text-muted hover:text-foreground"
           }`}
         >
-          <Icon size={15} />
+          {active === href && (
+            <ActiveIndicator layoutId="rightnav-pill" className="absolute inset-0 bg-accent/10 rounded-full" />
+          )}
+          <Icon size={15} className="relative z-10" />
         </a>
       ))}
     </nav>

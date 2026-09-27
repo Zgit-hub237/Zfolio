@@ -9,11 +9,15 @@ import Services from "@/components/sections/Services";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
+import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
+import GrainOverlay from "@/components/ui/GrainOverlay";
 
 export default function Home() {
   return (
     <LangProvider>
       <div className="bg-dark min-h-screen">
+        <ScrollProgressBar />
+        <GrainOverlay />
         <Sidebar />
         <main className="lg:ml-[270px] lg:mr-10">
           <MobileProfile />

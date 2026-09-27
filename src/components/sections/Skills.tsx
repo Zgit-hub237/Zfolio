@@ -6,6 +6,9 @@ import { BarChart2 } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionBadge from "@/components/SectionBadge";
 import { useT } from "@/contexts/LangContext";
+import RevealText from "@/components/ui/RevealText";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import Marquee from "@/components/ui/Marquee";
 
 const flyFrom = [
   { x: -140, y: -100 },
@@ -58,33 +61,35 @@ function CircleSkill({ name, abbr, percent, inView, index }: {
       animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: dir.x, y: dir.y }}
       transition={{ duration: 0.7, delay: index * 0.09, ease }}
     >
-      <div className="relative w-24 h-24 sm:w-28 sm:h-28">
-        <svg className="w-24 h-24 sm:w-28 sm:h-28 -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r={RADIUS} fill="none" stroke="var(--bg-4)" strokeWidth="2" />
-          <circle
-            cx="50" cy="50" r={RADIUS}
-            fill="none" stroke="#2ecc71" strokeWidth="2" strokeLinecap="round"
-            strokeDasharray={CIRCUMFERENCE}
-            style={{
-              strokeDashoffset: inView ? dashoffset : CIRCUMFERENCE,
-              transition: `stroke-dashoffset 1.3s ease-out ${index * 90}ms`,
-            }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
-          {logo ? (
-            <>
-              <Image src={logo} alt={name} width={46} height={46} className="rounded-lg object-contain" />
-              <span className="text-accent font-bold text-xs leading-none">{percent}%</span>
-            </>
-          ) : (
-            <>
-              <span className="text-lg font-bold text-foreground leading-none">{abbr}</span>
-              <span className="text-accent font-bold text-sm leading-none">{percent}%</span>
-            </>
-          )}
+      <SpotlightCard className="rounded-full">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28">
+          <svg className="w-24 h-24 sm:w-28 sm:h-28 -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r={RADIUS} fill="none" stroke="var(--bg-4)" strokeWidth="2" />
+            <circle
+              cx="50" cy="50" r={RADIUS}
+              fill="none" stroke="url(#skill-ring-gradient)" strokeWidth="2.5" strokeLinecap="round"
+              strokeDasharray={CIRCUMFERENCE}
+              style={{
+                strokeDashoffset: inView ? dashoffset : CIRCUMFERENCE,
+                transition: `stroke-dashoffset 1.3s ease-out ${index * 90}ms`,
+              }}
+            />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+            {logo ? (
+              <>
+                <Image src={logo} alt={name} width={46} height={46} className="rounded-lg object-contain" />
+                <span className="text-accent font-bold text-xs leading-none">{percent}%</span>
+              </>
+            ) : (
+              <>
+                <span className="text-lg font-bold text-foreground leading-none">{abbr}</span>
+                <span className="text-accent font-bold text-sm leading-none">{percent}%</span>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      </SpotlightCard>
       <span className="text-sm text-muted text-center">{name}</span>
     </motion.div>
   );
@@ -96,6 +101,16 @@ export default function Skills() {
 
   return (
     <section id="skills" className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-14 sm:py-20 bg-dark">
+      {/* Shared gradient definition for every skill ring */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <linearGradient id="skill-ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#2ecc71" />
+            <stop offset="100%" stopColor="#7c3aed" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       <div className="max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -104,10 +119,10 @@ export default function Skills() {
           transition={{ duration: 0.6, ease }}
         >
           <SectionBadge icon={BarChart2} label={t.skills.badge} />
-          <h2 className="section-heading mb-10 sm:mb-16">
+          <RevealText as="h2" className="section-heading mb-10 sm:mb-16">
             {t.skills.heading.split(" ").slice(0, -1).join(" ")}<br />
-            <span className="text-accent">{t.skills.heading.split(" ").slice(-1)[0]}</span>
-          </h2>
+            <span className="gradient-text">{t.skills.heading.split(" ").slice(-1)[0]}</span>
+          </RevealText>
         </motion.div>
 
         <div ref={ref} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
@@ -124,13 +139,13 @@ export default function Skills() {
           className="mt-16 pt-8 border-t border-dark-4"
         >
           <p className="text-xs text-muted uppercase tracking-widest mb-5">{t.skills.alsoMastered}</p>
-          <div className="flex flex-wrap gap-2">
+          <Marquee>
             {t.skills.secondarySkills.map((s) => (
-              <span key={s} className="px-3 py-1.5 border border-dark-4 rounded-full text-xs text-muted hover:border-accent/20 hover:text-accent/70 transition-all cursor-default">
+              <span key={s} className="px-3 py-1.5 border border-dark-4 rounded-full text-xs text-muted hover:border-accent/20 hover:text-accent/70 transition-all cursor-default whitespace-nowrap">
                 {s}
               </span>
             ))}
-          </div>
+          </Marquee>
         </motion.div>
       </div>
     </section>

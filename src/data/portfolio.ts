@@ -1,3 +1,5 @@
+export const CV_PATH = "/cv/CV_LOE_ZEGOU_MEGNIZON.pdf";
+
 export const personalInfo = {
   name: "Loé Zegou Megnizon",
   firstName: "Loé",
