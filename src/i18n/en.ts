@@ -13,7 +13,7 @@ export const en: Translations = {
   },
   sidebar: {
     subtitleLines: ["Computer Science", "Student,", "Software Engineering &", "Cybersecurity"],
-    copyright: "© Loé Zegou 2025. All rights reserved",
+    copyright: "© Loé Zegou 2026. All rights reserved",
     downloadCV: "Download CV",
     contactMe: "CONTACT ME",
   },
@@ -52,6 +52,22 @@ export const en: Translations = {
     showMore: "Show more — previous education (Bac, Probatoire, BEPC)",
     showLess: "Show less",
     mainTimeline: [
+      {
+        period: "Nov. 2026 — Present",
+        items: [
+          {
+            title: "MSc Cybersecurity Management",
+            company: "ECE, Paris",
+            current: true,
+            detail: {
+              type: "education",
+              description:
+                "Specialized program in security governance, cyber risk management, compliance (ISO 27001, GDPR) and incident response.",
+              tags: ["Governance", "Risk Management", "ISO 27001", "GDPR", "Incident Response"],
+            },
+          },
+        ],
+      },
       {
         period: "June 2026 — Present",
         items: [
@@ -131,6 +147,18 @@ export const en: Translations = {
               tags: ["C#", ".NET", "WPF", "SQLite", "Desktop"],
             },
           },
+          {
+            title: "Flutter Developer",
+            company: "Med Prepa — Remote",
+            current: false,
+            detail: {
+              type: "experience",
+              duration: "5 months",
+              description:
+                "Med Prepa is a mobile app that helps students prepare for the medical school entrance exam in Cameroon, currently being redesigned. Pixel-faithful development, clean architecture, testing and feature maintenance, with smooth backend–frontend integration. API integration, local storage and state management.",
+              tags: ["Flutter", "Dart", "Clean Architecture", "REST API", "State Management"],
+            },
+          },
         ],
       },
       {
@@ -160,20 +188,33 @@ export const en: Translations = {
               tags: ["Flutter", "Firebase", "Dart", "Real-time"],
             },
           },
-        ],
-      },
-      {
-        period: "Sept. 2024 — May 2026",
-        items: [
           {
-            title: "Private Computer Science Teacher",
-            company: "Mrs. CHRISTELLE Alatsa",
+            title: "ICT4D Hackathon — 3rd place",
+            company: "ICT4D Hackathon, Yaoundé",
             current: false,
             detail: {
               type: "experience",
+              duration: "Apr. 2025 — 24 h",
               description:
-                "Tutoring and mentoring of upper secondary TI series students at François Xavier Vogt College.",
-              tags: ["Computer Security", "Maintenance", "Programming", "Networks"],
+                "Team development, in 24 hours non-stop, of SchoolAccess, a mobile platform making school textbooks accessible in several languages. Team finished 3rd on the podium.",
+              tags: ["Hackathon", "Mobile", "Teamwork", "Podium"],
+            },
+          },
+        ],
+      },
+      {
+        period: "Sept. 2024 — Nov. 2026",
+        items: [
+          {
+            title: "Private Tutor",
+            company: "Private lessons, Yaoundé",
+            current: false,
+            detail: {
+              type: "experience",
+              duration: "2 years",
+              description:
+                "Tutoring and mentoring of upper secondary C and TI series students in several subjects, including computer science, mathematics and physics.",
+              tags: ["Computer Science", "Mathematics", "Physics", "Teaching"],
             },
           },
         ],
@@ -188,7 +229,7 @@ export const en: Translations = {
             detail: {
               type: "education",
               description:
-                "L3: Cryptography, vulnerability auditing, secure administration. L2: Software development, databases, networks. L1: Algorithms, programming, applied mathematics.",
+                "Specialization: cryptography, vulnerability auditing, secure administration and cybersecurity project management. Key skills: software development, databases, networks and systems security. Fundamentals: algorithms, programming, information systems and applied mathematics.",
               tags: ["Cybersecurity", "Cryptography", "Development", "Networks"],
             },
           },
@@ -300,7 +341,8 @@ export const en: Translations = {
     secondarySkills: [
       "Dart", "Java", "C#", "HTML / CSS", "SQLite",
       "Entity Framework", "MSFVenom", "VMware", "Windows Server",
-      "Android Studio", "IntelliJ IDEA",
+      "Android Studio", "IntelliJ IDEA", "C++", "Metasploitable",
+      "GitHub", "VS Code",
     ],
   },
   projects: {

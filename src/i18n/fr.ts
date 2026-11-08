@@ -13,7 +13,7 @@ export const fr: Translations = {
   },
   sidebar: {
     subtitleLines: ["Étudiant en", "Informatique,", "Génie Logiciel &", "Cybersécurité"],
-    copyright: "© Loé Zegou 2025. Tous droits réservés",
+    copyright: "© Loé Zegou 2026. Tous droits réservés",
     downloadCV: "Télécharger CV",
     contactMe: "ME CONTACTER",
   },
@@ -52,6 +52,22 @@ export const fr: Translations = {
     showMore: "Voir plus — formations antérieures (BAC, Probatoire, BEPC)",
     showLess: "Voir moins",
     mainTimeline: [
+      {
+        period: "Nov. 2026 — Présent",
+        items: [
+          {
+            title: "MSc Cybersecurity Management",
+            company: "ECE, Paris",
+            current: true,
+            detail: {
+              type: "education",
+              description:
+                "Formation spécialisée en gouvernance de la sécurité, gestion des risques cyber, conformité (ISO 27001, RGPD) et réponse aux incidents.",
+              tags: ["Gouvernance", "Gestion des risques", "ISO 27001", "RGPD", "Réponse aux incidents"],
+            },
+          },
+        ],
+      },
       {
         period: "Juin 2026 — Présent",
         items: [
@@ -131,6 +147,18 @@ export const fr: Translations = {
               tags: ["C#", ".NET", "WPF", "SQLite", "Desktop"],
             },
           },
+          {
+            title: "Développeur Flutter",
+            company: "Med Prepa — Télétravail",
+            current: false,
+            detail: {
+              type: "experience",
+              duration: "5 mois",
+              description:
+                "Med Prepa est une application mobile de préparation au concours de médecine au Cameroun, actuellement en refonte. Développement fidèle au design, clean architecture, tests et maintenance des fonctionnalités, avec une intégration fluide entre backend et frontend. Intégration d'API, stockage local et gestion d'état.",
+              tags: ["Flutter", "Dart", "Clean Architecture", "API REST", "Gestion d'état"],
+            },
+          },
         ],
       },
       {
@@ -160,20 +188,33 @@ export const fr: Translations = {
               tags: ["Flutter", "Firebase", "Dart", "Real-time"],
             },
           },
-        ],
-      },
-      {
-        period: "Sept. 2024 — Mai 2026",
-        items: [
           {
-            title: "Professeur particulier en Informatique",
-            company: "Mme CHRISTELLE Alatsa",
+            title: "ICT4D Hackathon — 3e place",
+            company: "ICT4D Hackathon, Yaoundé",
             current: false,
             detail: {
               type: "experience",
+              duration: "Avr. 2025 — 24 h",
               description:
-                "Encadrement et suivi d'élèves de classe de première et terminale série TI au collège François Xavier Vogt.",
-              tags: ["Sécurité informatique", "Maintenance", "Programmation", "Réseaux"],
+                "Développement en équipe, en 24 h non-stop, de SchoolAccess, une plateforme mobile rendant les manuels scolaires accessibles en plusieurs langues. Équipe classée 3e du podium.",
+              tags: ["Hackathon", "Mobile", "Travail d'équipe", "Podium"],
+            },
+          },
+        ],
+      },
+      {
+        period: "Sept. 2024 — Nov. 2026",
+        items: [
+          {
+            title: "Professeur particulier",
+            company: "Cours particuliers, Yaoundé",
+            current: false,
+            detail: {
+              type: "experience",
+              duration: "2 ans",
+              description:
+                "Encadrement et suivi d'élèves de première et terminale séries C et TI dans diverses matières, notamment l'informatique, les mathématiques et la physique.",
+              tags: ["Informatique", "Mathématiques", "Physique", "Pédagogie"],
             },
           },
         ],
@@ -188,7 +229,7 @@ export const fr: Translations = {
             detail: {
               type: "education",
               description:
-                "L3 : Cryptographie, audit de vulnérabilités, administration sécurisée. L2 : Développement logiciel, bases de données, réseaux. L1 : Algorithmique, programmation, mathématiques appliquées.",
+                "Spécialisation : cryptographie, audit de vulnérabilités, administration sécurisée et gestion de projets de cybersécurité. Compétences clés : développement logiciel, bases de données, réseaux et sécurité des systèmes. Fondamentaux : algorithmique, programmation, systèmes d'information et mathématiques appliquées.",
               tags: ["Cybersécurité", "Cryptographie", "Développement", "Réseaux"],
             },
           },
@@ -300,7 +341,8 @@ export const fr: Translations = {
     secondarySkills: [
       "Dart", "Java", "C#", "HTML / CSS", "SQLite",
       "Entity Framework", "MSFVenom", "VMware", "Windows Server",
-      "Android Studio", "IntelliJ IDEA",
+      "Android Studio", "IntelliJ IDEA", "C++", "Metasploitable",
+      "GitHub", "VS Code",
     ],
   },
   projects: {
