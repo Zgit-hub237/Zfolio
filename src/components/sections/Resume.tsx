@@ -154,6 +154,104 @@ function DetailPopup({
   );
 }
 
+/* ─── Item en pleine largeur (filtre actif) : détails affichés directement ─── */
+function ExpandedTimelineItem({
+  item, index, inView, t,
+}: {
+  item: SeparatedTimelineItem;
+  index: number;
+  inView: boolean;
+  t: { ongoing: string };
+}) {
+  const { detail } = item;
+
+  return (
+    <div className="relative pl-6 sm:pl-8 pb-10 last:pb-0 z-10">
+      <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-accent bg-dark-2 z-10" />
+
+      <div
+        className={`grid gap-2 md:grid-cols-[12rem_1fr] md:gap-8 transition-all duration-500 ease-out ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+        style={{ transitionDelay: `${100 + index * 80}ms` }}
+      >
+        <div>
+          <span className="text-[11px] text-accent font-semibold tracking-wider uppercase block">
+            {item.period}
+          </span>
+          {detail.duration && (
+            <span className="mt-1 flex items-center gap-1 text-[11px] text-muted">
+              <Clock size={11} />
+              {detail.duration}
+            </span>
+          )}
+        </div>
+
+        <div className="min-w-0">
+          <div className="flex items-start gap-2 flex-wrap mb-1">
+            <h4 className="font-semibold text-base sm:text-lg text-foreground">{item.title}</h4>
+            {item.current && (
+              <span className="flex-shrink-0 px-2 py-0.5 bg-accent/10 text-accent text-[10px] font-semibold rounded-full border border-accent/20">
+                {t.ongoing}
+              </span>
+            )}
+          </div>
+          <p className="text-muted text-xs sm:text-sm mb-3">{item.company}</p>
+
+          <p className="text-muted text-sm leading-relaxed mb-3 max-w-3xl">{detail.description}</p>
+
+          {detail.stats && (
+            <div className="inline-flex flex-wrap gap-x-6 gap-y-2 mb-3 p-3 bg-dark-3 rounded-xl">
+              {detail.stats.map((stat) => (
+                <div key={stat.label}>
+                  <span className="text-[9px] text-muted/60 uppercase tracking-widest block leading-none mb-0.5">
+                    {stat.label}
+                  </span>
+                  <span className="text-xs text-foreground font-bold">{stat.value}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-1.5">
+            {detail.tags.map((tag) => (
+              <span key={tag} className="px-2 py-0.5 bg-dark-4 rounded-md text-[10px] text-muted">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {(detail.certificateUrl || detail.credlyBadgeId) && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {detail.certificateUrl && (
+                <a
+                  href={detail.certificateUrl}
+                  download
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-xl text-accent text-[11px] font-medium hover:bg-accent/20 transition-all"
+                >
+                  <Award size={12} />
+                  Télécharger le certificat
+                </a>
+              )}
+              {detail.credlyBadgeId && (
+                <a
+                  href={`https://www.credly.com/badges/${detail.credlyBadgeId}/public_url`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 border border-dark-4 rounded-xl text-muted text-[11px] font-medium hover:text-accent hover:border-accent/30 transition-all"
+                >
+                  <Award size={12} />
+                  Badge Credly
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Item dans une colonne ─── */
 function ColumnTimelineItem({
   item, index, inView, t,
@@ -252,6 +350,15 @@ export default function Resume() {
     ongoing: t.resume.ongoing,
   };
 
+  const isFiltered = activeTab !== "all";
+
+  const renderItem = (item: SeparatedTimelineItem, idx: number) =>
+    isFiltered ? (
+      <ExpandedTimelineItem key={`${item.title}-${idx}`} item={item} index={idx} inView={inView} t={tLabels} />
+    ) : (
+      <ColumnTimelineItem key={`${item.title}-${idx}`} item={item} index={idx} inView={inView} t={tLabels} />
+    );
+
   const tabs: { key: "all" | "education" | "experience"; label: string; icon?: typeof BookOpen }[] = [
     { key: "all", label: "Tout voir (2 Colonnes)" },
     { key: "education", label: `${t.resume.educationLabel} (${educationItems.length})`, icon: BookOpen },
@@ -309,7 +416,7 @@ export default function Resume() {
         </div>
 
         {/* Separated Columns Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+        <div className={`grid grid-cols-1 gap-10 lg:gap-12 ${isFiltered ? "" : "lg:grid-cols-2"}`}>
           {/* Column 1: Formations (Education) */}
           {(activeTab === "all" || activeTab === "education") && (
             <div className="bg-dark-2/60 border border-dark-4 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-lg">
@@ -325,15 +432,7 @@ export default function Resume() {
                 </div>
 
                 <TimelineColumn>
-                  {educationItems.map((item, idx) => (
-                    <ColumnTimelineItem
-                      key={`${item.title}-${idx}`}
-                      item={item}
-                      index={idx}
-                      inView={inView}
-                      t={tLabels}
-                    />
-                  ))}
+                  {educationItems.map((item, idx) => renderItem(item, idx))}
                 </TimelineColumn>
               </div>
 
@@ -366,15 +465,7 @@ export default function Resume() {
                 </div>
 
                 <TimelineColumn>
-                  {experienceItems.map((item, idx) => (
-                    <ColumnTimelineItem
-                      key={`${item.title}-${idx}`}
-                      item={item}
-                      index={idx}
-                      inView={inView}
-                      t={tLabels}
-                    />
-                  ))}
+                  {experienceItems.map((item, idx) => renderItem(item, idx))}
                 </TimelineColumn>
               </div>
             </div>

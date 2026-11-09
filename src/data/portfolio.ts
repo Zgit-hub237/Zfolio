@@ -15,7 +15,7 @@ export const personalInfo = {
   portfolio: "https://zfolio-zeta.vercel.app/",
   social: {
     github: "https://github.com/Zgit-hub237",
-    linkedin: "https://www.linkedin.com/in/loe-zegou-068066390/",
+    linkedin: "https://www.linkedin.com/in/loe-zegou-megnizon-068066390/",
     instagram: "https://www.instagram.com/z_loe237?igsh=NGgyNGY4dGU4c29q",
     whatsapp: "https://wa.me/qr/6OJJBZF2OOCUJ1",
   },
