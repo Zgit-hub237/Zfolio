@@ -18,6 +18,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zfolio-zeta.vercel.app"),
+  verification: {
+    google: "KFgccyYYhQbRviAzxHMxL0ez2EhArxzs9MI4ZzcCJ0s",
+  },
   title: "Loé Zegou | Développeur & Cybersécurité",
   description:
     "Portfolio de Loé Zegou Megnizon — Étudiant en Informatique spécialisé en Cybersécurité & Génie Logiciel. Développeur mobile, web et passionné de sécurité.",
