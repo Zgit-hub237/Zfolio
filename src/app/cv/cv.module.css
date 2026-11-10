@@ -69,6 +69,29 @@
   position: relative;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8mm;
+}
+
+.headerText {
+  min-width: 0;
+  flex: 1;
+}
+
+.photo {
+  flex-shrink: 0;
+  width: 25mm;
+  height: 30mm;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: 8px;
+  border: 2px solid #2ecc71;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.18);
+}
+
 .header::after {
   content: "";
   position: absolute;
@@ -279,6 +302,17 @@
 }
 
 @media screen and (max-width: 820px) {
+  .header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .photo {
+    width: 88px;
+    height: 106px;
+  }
+
   .page {
     width: 100%;
     min-height: 0;

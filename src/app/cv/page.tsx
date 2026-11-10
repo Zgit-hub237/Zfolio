@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Download } from "lucide-react";
 import { cv } from "@/data/cv";
 import { CV_PATH } from "@/data/portfolio";
@@ -32,6 +33,7 @@ export default function CvPage() {
 
       <article className={s.page}>
         <header className={s.header}>
+          <div className={s.headerText}>
           <h1 className={s.name}>{cv.name}</h1>
           <p className={s.headline}>{cv.headline}</p>
           <p className={s.subheadline}>{cv.subheadline}</p>
@@ -46,6 +48,15 @@ export default function CvPage() {
               ),
             )}
           </div>
+          </div>
+          <Image
+            src={cv.photo}
+            alt={`Photo de ${cv.name}`}
+            width={240}
+            height={320}
+            priority
+            className={s.photo}
+          />
         </header>
 
         <aside className={s.aside}>

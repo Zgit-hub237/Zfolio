@@ -2,6 +2,7 @@
 
 export const cv = {
   name: "Loé Zegou Megnizon",
+  photo: "/images/profile.jpg",
   headline: "Cybersécurité · Analyse, pentest & développement sécurisé",
   subheadline: "Étudiant en MSc Cybersecurity Management à l'ECE Paris",
   contact: [
