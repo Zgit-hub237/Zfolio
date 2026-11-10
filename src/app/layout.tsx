@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   verification: {
     google: "KFgccyYYhQbRviAzxHMxL0ez2EhArxzs9MI4ZzcCJ0s",
   },
-  title: "Loé Zegou | Développeur & Cybersécurité",
+  title: "Loé Zegou | Cybersécurité & développement sécurisé",
   description:
-    "Portfolio de Loé Zegou Megnizon — Étudiant en Informatique spécialisé en Cybersécurité & Génie Logiciel. Développeur mobile, web et passionné de sécurité.",
-  keywords: ["portfolio", "développeur", "cybersécurité", "Flutter", "React", "Next.js", "Cameroun"],
+    "Portfolio de Loé Zegou Megnizon, étudiant en MSc Cybersecurity Management à l'ECE Paris : analyse de vulnérabilités, pentest et développement sécurisé (web, mobile, desktop).",
+  keywords: ["portfolio", "cybersécurité", "pentest", "analyse de vulnérabilités", "développement sécurisé", "ECE Paris", "Flutter", "Next.js"],
   authors: [{ name: "Loé Zegou Megnizon" }],
   openGraph: {
-    title: "Loé Zegou | Développeur & Cybersécurité",
-    description: "Portfolio de Loé Zegou Megnizon",
+    title: "Loé Zegou | Cybersécurité & développement sécurisé",
+    description: "Portfolio et CV de Loé Zegou Megnizon",
     type: "website",
   },
 };

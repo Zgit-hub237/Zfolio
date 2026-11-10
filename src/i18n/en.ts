@@ -12,7 +12,7 @@ export const en: Translations = {
     menu: "Menu",
   },
   sidebar: {
-    subtitleLines: ["Computer Science", "Student,", "Software Engineering &", "Cybersecurity"],
+    subtitleLines: ["Cybersecurity:", "analysis, pentest &", "secure", "development"],
     copyright: "© Loé Zegou 2026. All rights reserved",
     downloadCV: "Download CV",
     contactMe: "CONTACT ME",
@@ -20,9 +20,9 @@ export const en: Translations = {
   hero: {
     badge: "Introduction",
     greeting: "Hello, I'm",
-    line3: "a passionate",
-    line4: "CS student",
-    tagline: "I design reliable, high-performance and secure digital solutions.",
+    line3: "a cybersecurity",
+    line4: "student",
+    tagline: "I analyze, test and build secure applications.",
     yearsStudy: "Years of study",
     proExp: "Pro Experience",
     circularText: "MY PROJECTS • MY PROJECTS •",
@@ -33,7 +33,7 @@ export const en: Translations = {
     heading2: "solution begins with",
     heading3: "an even",
     heading4: "better story",
-    bio: "Passionate about cybersecurity, software development and emerging technologies, I demonstrate great curiosity and a keen analytical mindset. My goal is to design reliable, high-performance and secure digital solutions, while exploring new approaches to combine innovation and software quality.",
+    bio: "MSc Cybersecurity Management student at ECE Paris, I first learned to build mobile, web and desktop applications before specializing in their security. Today I combine vulnerability analysis, lab penetration testing and secure development: authentication, access control, API security. Curious and versatile, I want to be useful on both the offensive and defensive sides.",
     strengths: [
       "Creativity",
       "Adaptability",
@@ -46,6 +46,7 @@ export const en: Translations = {
     heading1: "Education &",
     heading2: "Experience",
     downloadCV: "Download my CV",
+    viewCV: "View resume online",
     ongoing: "Ongoing",
     educationLabel: "Education",
     experienceLabel: "Experience",
@@ -213,7 +214,7 @@ export const en: Translations = {
               type: "experience",
               duration: "2 years",
               description:
-                "Tutoring and mentoring of upper secondary C and TI series students in several subjects, including computer science, mathematics and physics.",
+                "Tutored 3 upper secondary students (C and TI series) over 2 years in computer science, mathematics and physics.",
               tags: ["Computer Science", "Mathematics", "Physics", "Teaching"],
             },
           },
@@ -306,31 +307,31 @@ export const en: Translations = {
     badge: "Services",
     heading: "My specializations",
     counts: {
+      shield: "Training & labs",
+      globe: "3 PROJECTS",
       smartphone: "2 PROJECTS",
-      globe: "2 PROJECTS",
-      monitor: "Studies & Training",
-      shield: "Studies & Internship",
+      monitor: "1 PROJECT",
     },
     items: [
       {
-        title: "Mobile Development",
+        title: "Analysis & penetration testing",
         description:
-          "High-performance iOS and Android applications with Flutter. Secure authentication, real-time messaging, cross-platform native experiences.",
+          "Vulnerability auditing and lab penetration testing with Kali Linux, Metasploitable and MSFVenom. Risk analysis, cryptography and system hardening.",
       },
       {
-        title: "Web Development",
+        title: "Secure web development",
         description:
-          "Modern websites and web applications with React, Next.js and Laravel. Responsive, SEO-friendly and high-performance interfaces.",
+          "Web applications and APIs with React, Next.js and Node.js, built with security in mind from the start: JWT authentication, role-based access control, OWASP best practices.",
       },
       {
-        title: "Desktop Development",
+        title: "Mobile development",
         description:
-          "Robust desktop applications with C# and .NET. Rich WPF/WinForms interfaces, database management and Windows system integration.",
+          "Cross-platform Flutter apps: biometric authentication, real-time messaging, clean architecture and API integration.",
       },
       {
-        title: "Cybersecurity",
+        title: "Desktop development",
         description:
-          "Vulnerability auditing, encryption, penetration testing and application hardening. Expertise in cryptography and secure system administration.",
+          "Robust desktop applications with C# and .NET: WPF interfaces, database management and user authentication.",
       },
     ],
   },
@@ -361,9 +362,9 @@ export const en: Translations = {
     items: [
       {
         id: 1,
-        title: "Laravel Portfolio",
+        title: "Next.js Portfolio",
         description:
-          "Professional responsive portfolio with Laravel, admin interface for content management, integrated project system and messaging service.",
+          "Bilingual, responsive professional portfolio built with Next.js: printable online resume, integrated project system and contact form.",
       },
       {
         id: 2,

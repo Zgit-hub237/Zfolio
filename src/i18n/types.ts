@@ -63,6 +63,7 @@ export interface Translations {
     heading1: string;
     heading2: string;
     downloadCV: string;
+    viewCV: string;
     ongoing: string;
     educationLabel: string;
     experienceLabel: string;

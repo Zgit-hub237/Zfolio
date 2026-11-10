@@ -54,7 +54,7 @@ export default function About() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                     </span>
-                    <span className="tracking-wide">Master I Validé • 2026</span>
+                    <span className="tracking-wide">MSc ECE Paris • 2026</span>
                   </motion.div>,
                   <motion.div
                     key="badge-bottom"
@@ -118,10 +118,10 @@ export default function About() {
             {/* Quick Metrics Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-dark-3/30 border border-dark-4 rounded-2xl">
               <SpotlightCard className="p-2 rounded-xl">
-                <span className="text-[10px] text-muted uppercase tracking-widest block font-mono">DIPLÔME</span>
+                <span className="text-[10px] text-muted uppercase tracking-widest block font-mono">FORMATION</span>
                 <span className="text-xs sm:text-sm font-bold text-foreground flex items-center gap-1.5 mt-1">
                   <Sparkles size={13} className="text-accent" />
-                  Master I Validé
+                  MSc ECE Paris
                 </span>
               </SpotlightCard>
               <SpotlightCard className="p-2 rounded-xl">
@@ -134,7 +134,7 @@ export default function About() {
               <SpotlightCard className="p-2 rounded-xl col-span-2 sm:col-span-1">
                 <span className="text-[10px] text-muted uppercase tracking-widest block font-mono">LOCATION</span>
                 <span className="text-xs sm:text-sm font-bold text-foreground block mt-1">
-                  Yaoundé, Cameroun
+                  Île-de-France
                 </span>
               </SpotlightCard>
             </div>

@@ -12,7 +12,7 @@ export const fr: Translations = {
     menu: "Menu",
   },
   sidebar: {
-    subtitleLines: ["Étudiant en", "Informatique,", "Génie Logiciel &", "Cybersécurité"],
+    subtitleLines: ["Cybersécurité :", "analyse, pentest &", "développement", "sécurisé"],
     copyright: "© Loé Zegou 2026. Tous droits réservés",
     downloadCV: "Télécharger CV",
     contactMe: "ME CONTACTER",
@@ -20,9 +20,9 @@ export const fr: Translations = {
   hero: {
     badge: "Introduction",
     greeting: "Bonjour, je suis",
-    line3: "étudiant passionné",
-    line4: "d'informatique",
-    tagline: "Je conçois des solutions numériques fiables, performantes et sécurisées.",
+    line3: "étudiant en",
+    line4: "cybersécurité",
+    tagline: "J'analyse, je teste et je développe des applications sécurisées.",
     yearsStudy: "Années d'études",
     proExp: "Expérience Pro",
     circularText: "MES PROJETS • MES PROJETS •",
@@ -33,7 +33,7 @@ export const fr: Translations = {
     heading2: "numérique commence par",
     heading3: "une histoire",
     heading4: "encore meilleure",
-    bio: "Passionné par la cybersécurité, le développement logiciel et les technologies émergentes, je fais preuve d'une grande curiosité et d'un sens aigu de l'analyse. Mon objectif est de concevoir des solutions numériques fiables, performantes et sécurisées, tout en explorant de nouvelles approches pour allier innovation et qualité logicielle.",
+    bio: "Étudiant en MSc Cybersecurity Management à l'ECE Paris, j'ai d'abord appris à construire des applications mobiles, web et desktop avant de me spécialiser dans leur sécurité. J'allie aujourd'hui analyse de vulnérabilités, tests d'intrusion en laboratoire et développement sécurisé : authentification, contrôle d'accès, sécurité des API. Curieux et polyvalent, je veux être utile autant côté offensif que défensif.",
     strengths: [
       "Créativité",
       "Adaptabilité",
@@ -46,6 +46,7 @@ export const fr: Translations = {
     heading1: "Formation et",
     heading2: "expérience",
     downloadCV: "Télécharger mon CV",
+    viewCV: "Voir le CV en ligne",
     ongoing: "En cours",
     educationLabel: "Formation",
     experienceLabel: "Expérience",
@@ -213,7 +214,7 @@ export const fr: Translations = {
               type: "experience",
               duration: "2 ans",
               description:
-                "Encadrement et suivi d'élèves de première et terminale séries C et TI dans diverses matières, notamment l'informatique, les mathématiques et la physique.",
+                "Suivi de 3 élèves de première et terminale (séries C et TI) pendant 2 ans en informatique, mathématiques et physique.",
               tags: ["Informatique", "Mathématiques", "Physique", "Pédagogie"],
             },
           },
@@ -306,31 +307,31 @@ export const fr: Translations = {
     badge: "Services",
     heading: "Mes spécialisations",
     counts: {
+      shield: "Formation & labos",
+      globe: "3 PROJETS",
       smartphone: "2 PROJETS",
-      globe: "2 PROJETS",
-      monitor: "Études & Formation",
-      shield: "Études & Stage",
+      monitor: "1 PROJET",
     },
     items: [
       {
-        title: "Développement Mobile",
+        title: "Analyse & tests d'intrusion",
         description:
-          "Applications iOS et Android performantes avec Flutter. Authentification sécurisée, messagerie temps réel, expériences natives multiplateformes.",
+          "Audit de vulnérabilités et tests d'intrusion en laboratoire avec Kali Linux, Metasploitable et MSFVenom. Analyse des risques, cryptographie et sécurisation des systèmes.",
       },
       {
-        title: "Développement Web",
+        title: "Développement web sécurisé",
         description:
-          "Sites web et applications web modernes avec React, Next.js et Laravel. Interfaces responsives, SEO-friendly et haute performance.",
+          "Applications et API web avec React, Next.js et Node.js, pensées pour la sécurité dès la conception : authentification JWT, contrôle d'accès par rôles, bonnes pratiques OWASP.",
       },
       {
-        title: "Développement Desktop",
+        title: "Développement mobile",
         description:
-          "Applications desktop robustes avec C# et .NET. Interfaces riches WPF/WinForms, gestion de base de données et intégration système Windows.",
+          "Applications Flutter multiplateformes : authentification biométrique, messagerie temps réel, clean architecture et intégration d'API.",
       },
       {
-        title: "Cybersécurité",
+        title: "Développement desktop",
         description:
-          "Audit de vulnérabilités, chiffrement, tests de pénétration et sécurisation d'applications. Expertise en cryptographie et administration sécurisée des systèmes.",
+          "Applications desktop robustes avec C# et .NET : interfaces WPF, gestion de base de données et authentification des utilisateurs.",
       },
     ],
   },
@@ -361,9 +362,9 @@ export const fr: Translations = {
     items: [
       {
         id: 1,
-        title: "Portfolio Laravel",
+        title: "Portfolio Next.js",
         description:
-          "Portfolio professionnel responsive avec Laravel, interface d'administration pour la gestion du contenu, système de projet intégré et service de messagerie.",
+          "Portfolio professionnel bilingue et responsive avec Next.js : CV en ligne imprimable, système de projets intégré et formulaire de contact.",
       },
       {
         id: 2,

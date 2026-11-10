@@ -1,0 +1,314 @@
+/* CV imprimable A4 — couleurs fixes, indépendantes du thème clair/sombre du site */
+
+.screen {
+  min-height: 100vh;
+  background: #e6e9e7;
+  padding: 24px 16px 48px;
+  color: #1b1f1d;
+}
+
+.toolbar {
+  max-width: 210mm;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toolbarLink,
+.toolbarButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #c9cfcb;
+  background: #ffffff;
+  color: #1b1f1d;
+}
+
+.toolbarButton {
+  background: #1e8a4c;
+  border-color: #1e8a4c;
+  color: #ffffff;
+}
+
+.toolbarButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-columns: 66mm 1fr;
+  grid-template-rows: auto 1fr;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 8.4pt;
+  line-height: 1.4;
+  color: #1b1f1d;
+}
+
+/* ── En-tête ── */
+.header {
+  grid-column: 1 / -1;
+  padding: 9mm 12mm 6mm;
+  background: #111614;
+  color: #ffffff;
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2ecc71, #7c3aed);
+}
+
+.name {
+  font-family: var(--font-display), var(--font-inter), sans-serif;
+  font-size: 25pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.headline {
+  margin-top: 4px;
+  font-size: 11pt;
+  font-weight: 600;
+  color: #4be08d;
+}
+
+.subheadline {
+  margin-top: 2px;
+  font-size: 9pt;
+  color: #b9c2bd;
+}
+
+.contactRow {
+  margin-top: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+  font-size: 8pt;
+  color: #dfe5e1;
+}
+
+.contactRow a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Colonne latérale ── */
+.aside {
+  background: #f1f5f2;
+  padding: 6mm 6mm 6mm 8mm;
+  border-right: 1px solid #e0e6e2;
+}
+
+.main {
+  padding: 6mm 12mm 6mm 8mm;
+}
+
+.sectionTitle {
+  font-family: var(--font-display), var(--font-inter), sans-serif;
+  font-size: 9.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1e8a4c;
+  padding-bottom: 3px;
+  margin-bottom: 6px;
+  border-bottom: 1.5px solid #cfe9da;
+}
+
+.section + .section {
+  margin-top: 4.5mm;
+}
+
+.skillGroup + .skillGroup {
+  margin-top: 5px;
+}
+
+.skillGroupTitle {
+  font-weight: 700;
+  font-size: 8.2pt;
+  margin-bottom: 3px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 3px;
+}
+
+.chip {
+  padding: 0 5px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #d6e0da;
+  font-size: 7.6pt;
+  white-space: nowrap;
+}
+
+.simpleList {
+  list-style: none;
+}
+
+.simpleList li + li {
+  margin-top: 3px;
+}
+
+.muted {
+  color: #5d6762;
+}
+
+.certTitle {
+  font-weight: 600;
+}
+
+.certTitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.langRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile {
+  font-size: 8.9pt;
+  line-height: 1.5;
+}
+
+/* ── Entrées (expériences, formation) ── */
+.entry + .entry {
+  margin-top: 5px;
+}
+
+.entryHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.entryRole {
+  font-weight: 700;
+  font-size: 9.2pt;
+}
+
+.entryOrg {
+  color: #1e8a4c;
+  font-weight: 600;
+}
+
+.entryPeriod {
+  flex-shrink: 0;
+  font-size: 7.8pt;
+  color: #5d6762;
+  white-space: nowrap;
+}
+
+.bullets {
+  margin-top: 2px;
+  padding-left: 12px;
+  list-style: disc;
+}
+
+.bullets li {
+  margin-top: 1px;
+}
+
+.bullets li::marker {
+  color: #2ecc71;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+}
+
+.project {
+  border: 1px solid #e0e6e2;
+  border-left: 3px solid #2ecc71;
+  border-radius: 4px;
+  padding: 4px 7px;
+}
+
+.project:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.projectName {
+  font-weight: 700;
+  font-size: 8.6pt;
+}
+
+.projectName a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.projectTags {
+  font-size: 7.2pt;
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.projectText {
+  font-size: 7.9pt;
+  margin-top: 1px;
+}
+
+@media screen and (max-width: 820px) {
+  .page {
+    width: 100%;
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    border-right: 0;
+    border-bottom: 1px solid #e0e6e2;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .screen {
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  .page {
+    box-shadow: none;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+  }
+}

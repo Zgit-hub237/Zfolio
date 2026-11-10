@@ -4,8 +4,8 @@ export const personalInfo = {
   name: "Loé Zegou Megnizon",
   firstName: "Loé",
   lastName: "Zegou",
-  title: "Étudiant en Informatique",
-  subtitle: "Cybersécurité & Génie Logiciel",
+  title: "Étudiant en cybersécurité",
+  subtitle: "Analyse, pentest & développement sécurisé",
   tagline: "Je conçois des solutions numériques fiables, performantes et sécurisées.",
   bio: "Passionné par la cybersécurité, le développement logiciel et les technologies émergentes, je fais preuve d'une grande curiosité et d'un sens aigu de l'analyse. Mon objectif est de concevoir des solutions numériques fiables, performantes et sécurisées, tout en explorant de nouvelles approches pour allier innovation et qualité logicielle.",
   email: "zegouloe237@gmail.com",
@@ -121,35 +121,35 @@ export const experience = [
 export const services = [
   {
     id: 1,
-    icon: "smartphone",
-    title: "Développement Mobile",
+    icon: "shield",
+    title: "Analyse & tests d'intrusion",
     description:
-      "Applications Android performantes avec Flutter. Interfaces modernes, intégration Firebase, gestion de l'état et optimisation pour une expérience utilisateur fluide.",
-    highlights: ["Flutter & Dart", "Firebase", "UI/UX Mobile"],
+      "Audit de vulnérabilités et tests d'intrusion en laboratoire avec Kali Linux, Metasploitable et MSFVenom. Analyse des risques, cryptographie et sécurisation des systèmes.",
+    highlights: ["Audit de vulnérabilités", "Tests d'intrusion", "Cryptographie", "Kali Linux"],
   },
   {
     id: 2,
     icon: "globe",
-    title: "Développement Web",
+    title: "Développement web sécurisé",
     description:
-      "Sites web et applications web modernes avec React, Next.js et Laravel. Interfaces responsives, SEO-friendly et haute performance.",
-    highlights: ["React / Next.js", "Laravel / PHP", "MySQL"],
+      "Applications et API web avec React, Next.js et Node.js, pensées pour la sécurité dès la conception : authentification JWT, contrôle d'accès par rôles, bonnes pratiques OWASP.",
+    highlights: ["React / Next.js", "Node.js / Express", "JWT & RBAC", "OWASP"],
   },
   {
     id: 3,
-    icon: "monitor",
-    title: "Développement Desktop",
+    icon: "smartphone",
+    title: "Développement mobile",
     description:
-      "Applications desktop robustes avec C# et .NET. Interfaces riches WPF/WinForms, gestion de base de données et intégration système Windows.",
-    highlights: ["C# / .NET", "WPF / WinForms", "MySQL / SQLite"],
+      "Applications Flutter multiplateformes : authentification biométrique, messagerie temps réel, clean architecture et intégration d'API.",
+    highlights: ["Flutter & Dart", "Firebase", "Clean Architecture"],
   },
   {
     id: 4,
-    icon: "shield",
-    title: "Cybersécurité",
+    icon: "monitor",
+    title: "Développement desktop",
     description:
-      "Audit de vulnérabilités,Chiffrement, tests de pénétration et sécurisation d'applications. Expertise en cryptographie et administration sécurisée des systèmes.",
-    highlights: ["Audit de vulnérabilités", "Tests de pénétration", "Cryptographie", "Kali Linux"],
+      "Applications desktop robustes avec C# et .NET : interfaces WPF, gestion de base de données et authentification des utilisateurs.",
+    highlights: ["C# / .NET", "WPF", "SQLite"],
   },
 ];
 

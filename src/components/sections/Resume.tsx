@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, ReactNode } from "react";
+import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import {
@@ -383,7 +384,17 @@ export default function Resume() {
               </p>
             </div>
 
-            <MagneticButton className="inline-block flex-shrink-0 self-start sm:self-auto">
+            <div className="flex flex-wrap gap-2 flex-shrink-0 self-start sm:self-auto">
+            <MagneticButton className="inline-block">
+              <Link
+                href="/cv"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/30 rounded-full text-sm text-accent hover:bg-accent/20 transition-all duration-200"
+              >
+                <FileText size={14} />
+                {t.resume.viewCV}
+              </Link>
+            </MagneticButton>
+            <MagneticButton className="inline-block">
               <a
                 href={CV_PATH}
                 download
@@ -393,6 +404,7 @@ export default function Resume() {
                 {t.resume.downloadCV}
               </a>
             </MagneticButton>
+            </div>
           </div>
 
           {/* Filter Tabs */}
