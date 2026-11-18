@@ -5,13 +5,17 @@ import { User, Award, CheckCircle2, Sparkles, ShieldCheck, Code2 } from "lucide-
 import { motion } from "framer-motion";
 import SectionBadge from "@/components/SectionBadge";
 import { useT } from "@/contexts/LangContext";
+import { useSite } from "@/contexts/SiteContext";
+import { tr } from "@/lib/content/types";
 import RevealText from "@/components/ui/RevealText";
 import PhotoFrame from "@/components/ui/PhotoFrame";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const { t } = useT();
+  const { t, lang } = useT();
+  const { profile } = useSite();
+  const facts = profile.about;
 
   return (
     <section id="about" className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-14 sm:py-20 bg-dark-2 relative overflow-hidden">
@@ -54,7 +58,7 @@ export default function About() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                     </span>
-                    <span className="tracking-wide">MSc ECE Paris • 2026</span>
+                    <span className="tracking-wide">{tr(facts.badge, lang)}</span>
                   </motion.div>,
                   <motion.div
                     key="badge-bottom"
@@ -121,20 +125,20 @@ export default function About() {
                 <span className="text-[10px] text-muted uppercase tracking-widest block font-mono">FORMATION</span>
                 <span className="text-xs sm:text-sm font-bold text-foreground flex items-center gap-1.5 mt-1">
                   <Sparkles size={13} className="text-accent" />
-                  MSc ECE Paris
+                  {tr(facts.factFormation, lang)}
                 </span>
               </SpotlightCard>
               <SpotlightCard className="p-2 rounded-xl">
                 <span className="text-[10px] text-muted uppercase tracking-widest block font-mono">SPÉCIALITÉ</span>
                 <span className="text-xs sm:text-sm font-bold text-foreground flex items-center gap-1.5 mt-1">
                   <ShieldCheck size={13} className="text-accent" />
-                  Cybersécurité
+                  {tr(facts.factSpecialty, lang)}
                 </span>
               </SpotlightCard>
               <SpotlightCard className="p-2 rounded-xl col-span-2 sm:col-span-1">
                 <span className="text-[10px] text-muted uppercase tracking-widest block font-mono">LOCATION</span>
                 <span className="text-xs sm:text-sm font-bold text-foreground block mt-1">
-                  Île-de-France
+                  {tr(facts.factLocation, lang)}
                 </span>
               </SpotlightCard>
             </div>

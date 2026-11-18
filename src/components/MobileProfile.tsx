@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, Mail, Sun, Moon, Github, Linkedin, Instagram, MessageCircle } from "lucide-react";
-import { personalInfo, CV_PATH } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import { useT, type Lang } from "@/contexts/LangContext";
 import ActiveIndicator from "@/components/ui/ActiveIndicator";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -14,6 +14,7 @@ export default function MobileProfile() {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const { lang, setLang, t } = useT();
+  const { personalInfo, cvPath } = useSite();
 
   useEffect(() => setMounted(true), []);
 
@@ -115,7 +116,7 @@ export default function MobileProfile() {
       <div className="grid grid-cols-2 gap-2">
         <MagneticButton className="block">
           <a
-            href={CV_PATH}
+            href={cvPath}
             download
             className="flex items-center justify-center gap-2 py-2.5 border border-accent/30 rounded-2xl text-accent text-xs font-medium hover:bg-accent/10 transition-all"
           >

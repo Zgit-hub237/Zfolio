@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
 import { useT } from "@/contexts/LangContext";
-import { CV_PATH } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import RevealText from "@/components/ui/RevealText";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ActiveIndicator from "@/components/ui/ActiveIndicator";
@@ -318,6 +318,7 @@ export default function Resume() {
   const [activeTab, setActiveTab] = useState<"all" | "education" | "experience">("all");
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { t } = useT();
+  const { cvPath } = useSite();
 
   const mainGroups = t.resume.mainTimeline;
   const extraGroups = t.resume.extraTimeline;
@@ -396,7 +397,7 @@ export default function Resume() {
             </MagneticButton>
             <MagneticButton className="inline-block">
               <a
-                href={CV_PATH}
+                href={cvPath}
                 download
                 className="inline-flex items-center gap-2 px-5 py-2.5 border border-dark-4 rounded-full text-sm text-muted hover:text-accent hover:border-accent/30 transition-all duration-200 group"
               >

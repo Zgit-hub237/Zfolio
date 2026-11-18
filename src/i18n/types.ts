@@ -30,6 +30,7 @@ export interface Translations {
     services: string;
     skills: string;
     projects: string;
+    blog: string;
     contact: string;
     menu: string;
   };
@@ -92,6 +93,16 @@ export interface Translations {
     sourceCode: string;
     viewGithub: string;
     items: Array<{ id: number; title: string; description: string }>;
+  };
+  blog: {
+    badge: string;
+    heading: string;
+    intro: string;
+    readMore: string;
+    viewAll: string;
+    empty: string;
+    video: string;
+    back: string;
   };
   contact: {
     badge: string;

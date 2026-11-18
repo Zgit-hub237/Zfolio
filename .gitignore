@@ -33,3 +33,10 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# base de données locale (PGlite) et fichiers téléversés en local
+/.data/
+/public/uploads/
+.env
+
+.env*

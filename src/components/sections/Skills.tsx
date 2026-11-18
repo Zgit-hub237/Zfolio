@@ -6,6 +6,7 @@ import { BarChart2 } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionBadge from "@/components/SectionBadge";
 import { useT } from "@/contexts/LangContext";
+import { useSite } from "@/contexts/SiteContext";
 import RevealText from "@/components/ui/RevealText";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import Marquee from "@/components/ui/Marquee";
@@ -21,37 +22,15 @@ const flyFrom = [
   { x:  140, y:  100 },
 ];
 
-const logoMap: Record<string, string> = {
-  "Flutter":    "/logos/flutter.jpg",
-  "Firebase":   "/logos/firebas.jpg",
-  "Kali Linux": "/logos/kalilinux.jpg",
-  "MySQL":      "/logos/mysql.jpg",
-  "Laravel":    "/logos/laravel.jpg",
-  "C / C++":    "/logos/c.jpg",
-  "JavaScript": "/logos/javascript.jpg",
-  "React":      "/logos/react.jpg",
-};
-
-const mainSkills = [
-  { name: "Flutter",    abbr: "Fl", percent: 85 },
-  { name: "Firebase",   abbr: "Fb", percent: 80 },
-  { name: "React",      abbr: "Re", percent: 75 },
-  { name: "JavaScript", abbr: "JS", percent: 78 },
-  { name: "Kali Linux", abbr: "KL", percent: 75 },
-  { name: "MySQL",      abbr: "DB", percent: 78 },
-  { name: "C / C++",    abbr: "C+", percent: 72 },
-  { name: "Laravel",    abbr: "Lv", percent: 68 },
-];
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const RADIUS = 44;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-function CircleSkill({ name, abbr, percent, inView, index }: {
-  name: string; abbr: string; percent: number; inView: boolean; index: number;
+function CircleSkill({ name, abbr, percent, logo, inView, index }: {
+  name: string; abbr: string; percent: number; logo: string | null; inView: boolean; index: number;
 }) {
   const dashoffset = CIRCUMFERENCE - (percent / 100) * CIRCUMFERENCE;
-  const logo = logoMap[name];
   const dir = flyFrom[index] ?? { x: 0, y: 100 };
 
   return (
@@ -98,6 +77,14 @@ function CircleSkill({ name, abbr, percent, inView, index }: {
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   const { t } = useT();
+  const mainSkills = useSite()
+    .site.skills.filter((sk) => sk.kind === "circle")
+    .map((sk) => ({
+      name: sk.name,
+      percent: sk.percent,
+      logo: sk.logo,
+      abbr: sk.name.replace(/[^A-Za-z0-9+#]/g, "").slice(0, 2),
+    }));
 
   return (
     <section id="skills" className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-14 sm:py-20 bg-dark">

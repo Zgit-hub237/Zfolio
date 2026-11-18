@@ -3,7 +3,7 @@
 import { Layers, Smartphone, Globe, Shield, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionBadge from "@/components/SectionBadge";
-import { services } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import { useT } from "@/contexts/LangContext";
 import RevealText from "@/components/ui/RevealText";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -19,6 +19,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Services() {
   const { t } = useT();
+  const services = useSite().site.services;
 
   return (
     <section id="services" className="min-h-screen flex flex-col justify-center px-5 sm:px-8 lg:px-16 py-14 sm:py-20 bg-dark-2">
@@ -39,7 +40,7 @@ export default function Services() {
         <div className="space-y-4">
           {services.map((service, i) => {
             const Icon = iconMap[service.icon as keyof typeof iconMap];
-            const count = t.services.counts[service.icon];
+            const count = t.services.counts[String(service.id)];
             const translated = t.services.items[i];
             return (
               <motion.div
@@ -56,11 +57,11 @@ export default function Services() {
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <h3 className="text-foreground text-base sm:text-xl font-semibold">
-                        {translated?.title ?? service.title}
+                        {translated?.title}
                       </h3>
                     </div>
                     <p className="text-muted text-sm leading-relaxed mb-3">
-                      {translated?.description ?? service.description}
+                      {translated?.description}
                     </p>
                     <p className="text-accent text-xs font-bold uppercase tracking-widest">
                       {count}

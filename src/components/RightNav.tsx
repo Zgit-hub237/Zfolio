@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Home, User, FileText, Layers, BarChart2, Grid3X3, Mail, Menu } from "lucide-react";
+import { Home, User, FileText, Layers, BarChart2, Grid3X3, Mail, Menu, PenSquare } from "lucide-react";
 import { useT } from "@/contexts/LangContext";
 import ActiveIndicator from "@/components/ui/ActiveIndicator";
 
@@ -16,11 +16,12 @@ export default function RightNav() {
     { href: "#services", icon: Layers,    label: t.nav.services },
     { href: "#skills",   icon: BarChart2, label: t.nav.skills },
     { href: "#projects", icon: Grid3X3,   label: t.nav.projects },
+    { href: "#blog",     icon: PenSquare, label: t.nav.blog },
     { href: "#contact",  icon: Mail,      label: t.nav.contact },
   ];
 
   useEffect(() => {
-    const ids = ["hero", "about", "resume", "services", "skills", "projects", "contact"];
+    const ids = ["hero", "about", "resume", "services", "skills", "projects", "blog", "contact"];
     const handleScroll = () => {
       for (const id of [...ids].reverse()) {
         const el = document.getElementById(id);

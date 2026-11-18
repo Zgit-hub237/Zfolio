@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { Settings, Mail, Download, Sun, Moon } from "lucide-react";
-import { personalInfo, CV_PATH } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import { useT, type Lang } from "@/contexts/LangContext";
 import ActiveIndicator from "@/components/ui/ActiveIndicator";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -48,6 +48,7 @@ export default function Sidebar() {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const { lang, setLang, t } = useT();
+  const { personalInfo, cvPath } = useSite();
 
   useEffect(() => setMounted(true), []);
 
@@ -186,7 +187,7 @@ export default function Sidebar() {
         <div className="px-6 pb-8 flex-shrink-0 space-y-3" suppressHydrationWarning>
           <MagneticButton className="block w-full">
             <a
-              href={CV_PATH}
+              href={cvPath}
               download
               className="flex items-center justify-center gap-2 w-full py-2.5 border border-accent/30 rounded-2xl text-accent text-sm font-medium hover:bg-accent/10 transition-all duration-200"
             >

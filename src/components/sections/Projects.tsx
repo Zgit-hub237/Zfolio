@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Grid3X3, ExternalLink, Github, Code2, Smartphone, Shield, Monitor } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
-import { projects } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import { useT } from "@/contexts/LangContext";
 import RevealText from "@/components/ui/RevealText";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -23,6 +23,7 @@ export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
   const { t } = useT();
+  const projects = useSite().site.projects.filter((p) => p.published);
 
   const filtered =
     activeFilter === "all" ? projects : projects.filter((p) => p.category === activeFilter);
@@ -75,9 +76,14 @@ export default function Projects() {
                 <SpotlightCard className="flex flex-col h-full border border-dark-4 bg-dark rounded-2xl overflow-hidden hover:border-accent/30 transition-colors duration-300">
                   {/* Decorative category banner */}
                   <div
-                    className={`relative h-20 sm:h-24 flex items-center justify-center overflow-hidden bg-gradient-to-br ${categoryGradient[project.category] ?? categoryGradient.web} bg-[length:200%_200%] motion-safe:group-hover:animate-gradient-x`}
+                    className={`relative ${project.image ? "h-40 sm:h-44" : "h-20 sm:h-24"} flex items-center justify-center overflow-hidden bg-gradient-to-br ${categoryGradient[project.category] ?? categoryGradient.web} bg-[length:200%_200%] motion-safe:group-hover:animate-gradient-x`}
                   >
-                    <CatIcon size={56} strokeWidth={1} className="text-foreground/15" />
+                    {project.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={project.image} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                    ) : (
+                      <CatIcon size={56} strokeWidth={1} className="text-foreground/15" />
+                    )}
                     <div className="absolute top-3 right-3 flex gap-2">
                       {project.link && (
                         <a href={project.link} target="_blank" rel="noopener noreferrer"
@@ -103,10 +109,10 @@ export default function Projects() {
                     </div>
 
                     <h3 className="text-foreground text-base font-semibold mb-2 group-hover:text-accent transition-colors">
-                      {translated?.title ?? project.title}
+                      {translated?.title}
                     </h3>
                     <p className="text-muted text-sm leading-relaxed flex-1 mb-4">
-                      {translated?.description ?? project.description}
+                      {translated?.description}
                     </p>
 
                     <div className="flex flex-wrap gap-2 mt-auto">

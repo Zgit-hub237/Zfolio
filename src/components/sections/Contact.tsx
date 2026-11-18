@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Download } from "lucide-react";
 import SectionBadge from "@/components/SectionBadge";
-import { personalInfo, CV_PATH } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import { useT } from "@/contexts/LangContext";
 import RevealText from "@/components/ui/RevealText";
 import SpotlightCard from "@/components/ui/SpotlightCard";
@@ -16,6 +16,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const { t } = useT();
+  const { personalInfo, cvPath } = useSite();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -23,12 +24,13 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const website = (new FormData(e.currentTarget as HTMLFormElement).get("website") as string) ?? "";
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website }),
       });
       if (!res.ok) throw new Error();
       setStatus("sent");
@@ -66,7 +68,7 @@ export default function Contact() {
       icon: Download,
       label: t.contact.cvLabel,
       content: (
-        <a href={CV_PATH} download className="text-sm text-foreground hover:text-accent transition-colors">
+        <a href={cvPath} download className="text-sm text-foreground hover:text-accent transition-colors">
           {t.contact.downloadCV}
         </a>
       ),
@@ -157,6 +159,8 @@ export default function Contact() {
                   onSubmit={handleSubmit}
                   className="space-y-4"
                 >
+                  {/* Pot de miel anti-robots : invisible pour les humains */}
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs text-muted uppercase tracking-widest mb-2">{t.contact.nameLabel}</label>

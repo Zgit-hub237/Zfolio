@@ -5,11 +5,10 @@ import {
   Home, ArrowDown, Menu, X, Sun, Moon,
   User, FileText, Layers, Code2, LayoutGrid, Mail,
   Instagram, Github, Linkedin,
-  Phone, ExternalLink, MessageCircle,
-} from "lucide-react";
+  Phone, ExternalLink, MessageCircle, PenSquare } from "lucide-react";
 import { motion, AnimatePresence, useInView, animate } from "framer-motion";
 import { useTheme } from "next-themes";
-import { personalInfo } from "@/data/portfolio";
+import { useSite } from "@/contexts/SiteContext";
 import { useT, type Lang } from "@/contexts/LangContext";
 import RevealText from "@/components/ui/RevealText";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -45,6 +44,7 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
   const { lang, setLang, t, menuOpen, setMenuOpen } = useT();
+  const { personalInfo, profile } = useSite();
   const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => setMounted(true), []);
@@ -58,6 +58,7 @@ export default function Hero() {
     { href: "#services", label: t.nav.services, icon: Layers },
     { href: "#skills", label: t.nav.skills, icon: Code2 },
     { href: "#projects", label: t.nav.projects, icon: LayoutGrid },
+    { href: "#blog", label: t.nav.blog, icon: PenSquare },
     { href: "#contact", label: t.nav.contact, icon: Mail },
   ];
 
@@ -134,7 +135,7 @@ export default function Hero() {
             className="flex flex-wrap items-end gap-6 sm:gap-10 lg:gap-12"
           >
             <div>
-              <CountUp to={4} suffix="+" />
+              <CountUp to={profile.hero.yearsStudy} suffix="+" />
               <div className="text-xs text-muted uppercase tracking-widest">{t.hero.yearsStudy}</div>
             </div>
             <div>
@@ -155,7 +156,7 @@ export default function Hero() {
               </MagneticButton>
             </div>
             <div>
-              <CountUp to={2} suffix="+" />
+              <CountUp to={profile.hero.proExp} suffix="+" />
               <div className="text-xs text-muted uppercase tracking-widest">{t.hero.proExp}</div>
             </div>
           </motion.div>

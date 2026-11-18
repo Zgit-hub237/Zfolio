@@ -25,7 +25,14 @@ const LangContext = createContext<LangContextValue>({
   setMenuOpen: () => {},
 });
 
-export function LangProvider({ children }: { children: ReactNode }) {
+export function LangProvider({
+  children,
+  dicts,
+}: {
+  children: ReactNode;
+  /** Dictionnaires construits côté serveur à partir de la base de données */
+  dicts?: { fr: Translations; en: Translations };
+}) {
   const [lang, setLangState] = useState<Lang>("fr");
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -45,7 +52,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <LangContext.Provider value={{ lang, setLang, t: lang === "fr" ? fr : en, menuOpen, setMenuOpen }}>
+    <LangContext.Provider value={{ lang, setLang, t: lang === "fr" ? dicts?.fr ?? fr : dicts?.en ?? en, menuOpen, setMenuOpen }}>
       {children}
     </LangContext.Provider>
   );
